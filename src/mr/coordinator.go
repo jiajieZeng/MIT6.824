@@ -84,7 +84,7 @@ func (c *Coordinator) CheckProcess() {
 }
 
 // 分配任务
-func (c *Coordinator) DistributeOrder(args *ExampleArgs, reply *Order) {
+func (c *Coordinator) DistributeOrder(args *ExampleArgs, reply *Order) error {
 	log.Println("Coordinator work")
 	mutex.Lock()
 	defer mutex.Unlock()
@@ -116,6 +116,7 @@ func (c *Coordinator) DistributeOrder(args *ExampleArgs, reply *Order) {
 	} else {
 		reply.OrderType = KilledOrder
 	}
+	return nil
 }
 
 // 生成ID
