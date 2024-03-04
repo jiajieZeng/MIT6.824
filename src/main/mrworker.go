@@ -1,0 +1,72 @@
+package main
+
+//
+// start a worker process, which is implemented
+// in ../mr/worker.go. typically there will be
+// multiple worker processes, talking to one coordinator.
+//
+// go run mrworker.go wc.so
+//
+// Please do not change this file.
+//
+
+import (
+	"fmt"
+	"log"
+	"os"
+	"plugin"
+	"time"
+
+	"6.824/mr"
+)
+
+func main() {
+	if len(os.Args) != 2 {
+		fmt.Fprintf(os.Stderr, "Usage: mrworker xxx.so\n")
+		os.Exit(1)
+	}
+
+	mapf, reducef := loadPlugin(os.Args[1])
+	now := time.Now()
+	filename := fmt.Sprintf("../../storage/worker%v_log.log", now)
+	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))
+	}
+	defer func() {
+		f.Close()
+	}()
+
+	log.SetOutput(f)
+	x := now.Second()
+	mr.Worker(mapf, reducef, fmt.Sprintf("%v", x))
+	// var wg sync.WaitGroup
+	// wg.Add(2)
+	// for i := 0; i < 3; i++ {
+	// 	go mr.Worker(mapf, reducef, "w"+strconv.Itoa(i))
+	// }
+	// wg.Wait()
+}
+
+//
+// load the application Map and Reduce functions
+// from a plugin file, e.g. ../mrapps/wc.so
+//
+func loadPlugin(filename string) (func(string, string) []mr.KeyValue, func(string, []string) string) {
+	p, err := plugin.Open(filename)
+	if err != nil {
+		log.Fatalf("cannot load plugin %v", filename)
+	}
+	xmapf, err := p.Lookup("Map")
+	if err != nil {
+		log.Fatalf("cannot find Map in %v", filename)
+	}
+	mapf := xmapf.(func(string, string) []mr.KeyValue)
+	xreducef, err := p.Lookup("Reduce")
+	if err != nil {
+		log.Fatalf("cannot find Reduce in %v", filename)
+	}
+	reducef := xreducef.(func(string, []string) string)
+
+	return mapf, reducef
+}
