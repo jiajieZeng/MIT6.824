@@ -8,18 +8,28 @@ package raft
 // test with the original before submitting.
 //
 
-import "testing"
-import "fmt"
-import "time"
-import "math/rand"
-import "sync/atomic"
-import "sync"
+import (
+	"fmt"
+	"math/rand"
+	"os"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"time"
+)
 
 // The tester generously allows solutions to complete elections in one second
 // (much more than the paper's range of timeouts).
 const RaftElectionTimeout = 1000 * time.Millisecond
 
 func TestInitialElection2A(t *testing.T) {
+	f, err := os.OpenFile("../storageraft/coordinator_log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))
+	}
+	defer func() {
+		f.Close()
+	}()
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -51,6 +61,13 @@ func TestInitialElection2A(t *testing.T) {
 }
 
 func TestReElection2A(t *testing.T) {
+	f, err := os.OpenFile("../storageraft/coordinator_log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))
+	}
+	defer func() {
+		f.Close()
+	}()
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -87,6 +104,13 @@ func TestReElection2A(t *testing.T) {
 }
 
 func TestManyElections2A(t *testing.T) {
+	f, err := os.OpenFile("../storageraft/coordinator_log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))
+	}
+	defer func() {
+		f.Close()
+	}()
 	servers := 7
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()

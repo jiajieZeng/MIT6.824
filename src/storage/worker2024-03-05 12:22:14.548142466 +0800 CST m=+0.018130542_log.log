@@ -1,0 +1,23 @@
+2024/03/05 12:22:14 14 :  call for  1  times
+2024/03/05 12:22:14 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:22:14 worker  14 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:22:14 14  waiting for order
+2024/03/05 12:22:16 14 :  call for  2  times
+2024/03/05 12:22:16 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:22:16 worker  14 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:22:16 14  waiting for order
+2024/03/05 12:22:18 14 :  call for  3  times
+2024/03/05 12:22:18 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:22:18 worker  14 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:22:18 14  waiting for order
+2024/03/05 12:22:20 14 :  call for  4  times
+2024/03/05 12:22:20 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:22:20 worker  14 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:22:20 14  waiting for order
+2024/03/05 12:22:22 14 :  call for  5  times
+2024/03/05 12:22:22 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:22:22 worker  14 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:22:22 14  waiting for order
+2024/03/05 12:22:24 14 :  call for  6  times
+2024/03/05 12:22:24 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 12:22:24 worker  14 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0

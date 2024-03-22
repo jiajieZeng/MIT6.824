@@ -1,0 +1,19 @@
+2024/03/05 12:12:47 47 :  call for  1  times
+2024/03/05 12:12:47 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:12:47 worker  47 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:12:47 47  waiting for order
+2024/03/05 12:12:49 47 :  call for  2  times
+2024/03/05 12:12:49 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:12:49 worker  47 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:12:49 47  waiting for order
+2024/03/05 12:12:51 47 :  call for  3  times
+2024/03/05 12:12:51 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:12:51 worker  47 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:12:51 47  waiting for order
+2024/03/05 12:12:53 47 :  call for  4  times
+2024/03/05 12:12:53 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:12:53 worker  47 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:12:53 47  waiting for order
+2024/03/05 12:12:55 47 :  call for  5  times
+2024/03/05 12:12:55 CallOrder: worker get response &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 12:12:55 worker  47 get order:  &{0 [../pg-grimm.txt] 3 10}  order Type 0

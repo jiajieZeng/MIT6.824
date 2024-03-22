@@ -1,0 +1,8 @@
+2024/03/05 08:21:37 37 :  call for  1  times
+2024/03/05 08:21:37 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 08:21:37 worker  37 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0
+2024/03/05 08:21:46 start 5 map
+2024/03/05 08:21:46 Worker finish order 5, order type 0
+2024/03/05 08:21:47 37 :  call for  2  times
+2024/03/05 08:21:47 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 08:21:47 worker  37 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0

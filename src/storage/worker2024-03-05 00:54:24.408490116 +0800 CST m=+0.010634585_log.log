@@ -1,0 +1,99 @@
+2024/03/05 00:54:24 24 :  call for  1  times
+2024/03/05 00:54:24 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:24 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:24 24  waiting for order
+2024/03/05 00:54:26 24 :  call for  2  times
+2024/03/05 00:54:26 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:26 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:26 24  waiting for order
+2024/03/05 00:54:28 24 :  call for  3  times
+2024/03/05 00:54:28 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:28 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:28 24  waiting for order
+2024/03/05 00:54:30 24 :  call for  4  times
+2024/03/05 00:54:30 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:30 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:30 24  waiting for order
+2024/03/05 00:54:32 24 :  call for  5  times
+2024/03/05 00:54:32 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 00:54:32 worker  24 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 00:54:32 start 1 map
+2024/03/05 00:54:32 Worker finish order 1, order type 0
+2024/03/05 00:54:33 24 :  call for  6  times
+2024/03/05 00:54:33 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:33 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:33 24  waiting for order
+2024/03/05 00:54:35 24 :  call for  7  times
+2024/03/05 00:54:35 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:35 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:35 24  waiting for order
+2024/03/05 00:54:37 24 :  call for  8  times
+2024/03/05 00:54:37 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:37 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:37 24  waiting for order
+2024/03/05 00:54:39 24 :  call for  9  times
+2024/03/05 00:54:39 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:39 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:39 24  waiting for order
+2024/03/05 00:54:41 24 :  call for  10  times
+2024/03/05 00:54:41 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:41 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:41 24  waiting for order
+2024/03/05 00:54:43 24 :  call for  11  times
+2024/03/05 00:54:43 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:54:43 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:54:43 24  waiting for order
+2024/03/05 00:54:45 24 :  call for  12  times
+2024/03/05 00:54:45 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 00:54:45 worker  24 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 00:54:52 start 6 map
+2024/03/05 00:54:52 Worker finish order 6, order type 0
+2024/03/05 00:54:53 24 :  call for  13  times
+2024/03/05 00:54:53 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 00:54:53 worker  24 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 00:54:53 start 8 map
+2024/03/05 00:54:53 Worker finish order 8, order type 1
+2024/03/05 00:54:54 24 :  call for  14  times
+2024/03/05 00:54:54 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 00:54:54 worker  24 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1
+2024/03/05 00:54:58 start 10 map
+2024/03/05 00:54:58 Worker finish order 10, order type 1
+2024/03/05 00:54:59 24 :  call for  15  times
+2024/03/05 00:54:59 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:54:59 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:54:59 24  waiting for order
+2024/03/05 00:55:01 24 :  call for  16  times
+2024/03/05 00:55:01 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:01 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:01 24  waiting for order
+2024/03/05 00:55:03 24 :  call for  17  times
+2024/03/05 00:55:03 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:03 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:03 24  waiting for order
+2024/03/05 00:55:05 24 :  call for  18  times
+2024/03/05 00:55:05 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:05 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:05 24  waiting for order
+2024/03/05 00:55:07 24 :  call for  19  times
+2024/03/05 00:55:07 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:07 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:07 24  waiting for order
+2024/03/05 00:55:09 24 :  call for  20  times
+2024/03/05 00:55:09 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:09 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:09 24  waiting for order
+2024/03/05 00:55:11 24 :  call for  21  times
+2024/03/05 00:55:11 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:11 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:11 24  waiting for order
+2024/03/05 00:55:13 24 :  call for  22  times
+2024/03/05 00:55:13 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:13 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:13 24  waiting for order
+2024/03/05 00:55:15 24 :  call for  23  times
+2024/03/05 00:55:15 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 00:55:15 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 00:55:15 24  waiting for order
+2024/03/05 00:55:17 24 :  call for  24  times
+2024/03/05 00:55:17 CallOrder: worker get response &{1 [mr-tmp-0-5 mr-tmp-1-5 mr-tmp-2-5 mr-tmp-3-5 mr-tmp-4-5 mr-tmp-5-5 mr-tmp-6-5 mr-tmp-7-5] 13 0}
+2024/03/05 00:55:17 worker  24 get order:  &{1 [mr-tmp-0-5 mr-tmp-1-5 mr-tmp-2-5 mr-tmp-3-5 mr-tmp-4-5 mr-tmp-5-5 mr-tmp-6-5 mr-tmp-7-5] 13 0}  order Type 1

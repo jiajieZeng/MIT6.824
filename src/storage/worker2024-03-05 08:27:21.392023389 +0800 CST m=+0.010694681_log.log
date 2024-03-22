@@ -1,0 +1,28 @@
+2024/03/05 08:27:21 21 :  call for  1  times
+2024/03/05 08:27:21 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:27:21 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:27:21 21  waiting for order
+2024/03/05 08:27:23 21 :  call for  2  times
+2024/03/05 08:27:23 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:27:23 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:27:23 21  waiting for order
+2024/03/05 08:27:25 21 :  call for  3  times
+2024/03/05 08:27:25 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:27:25 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:27:25 21  waiting for order
+2024/03/05 08:27:27 21 :  call for  4  times
+2024/03/05 08:27:27 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:27:27 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:27:27 21  waiting for order
+2024/03/05 08:27:29 21 :  call for  5  times
+2024/03/05 08:27:29 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:27:29 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:27:29 21  waiting for order
+2024/03/05 08:27:31 21 :  call for  6  times
+2024/03/05 08:27:31 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 08:27:31 worker  21 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 08:27:31 start 1 map
+2024/03/05 08:27:31 Worker finish order 1, order type 0
+2024/03/05 08:27:32 21 :  call for  7  times
+2024/03/05 08:27:32 CallOrder: worker get response &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 08:27:32 worker  21 get order:  &{0 [../pg-grimm.txt] 3 10}  order Type 0

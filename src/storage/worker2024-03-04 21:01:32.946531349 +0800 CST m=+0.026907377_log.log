@@ -1,0 +1,3 @@
+2024/03/04 21:01:32 32 :  call for  1  times
+2024/03/04 21:01:32 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/04 21:01:32 worker  32 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0

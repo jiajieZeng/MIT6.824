@@ -1,0 +1,24 @@
+2024/03/05 13:24:16 16 :  call for  1  times
+2024/03/05 13:24:16 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 13:24:16 worker  16 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0
+2024/03/05 13:24:18 start 0 map
+2024/03/05 13:24:18 Worker finish order 0, order type 0
+2024/03/05 13:24:19 16 :  call for  2  times
+2024/03/05 13:24:19 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 13:24:19 worker  16 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 13:24:19 16  waiting for order
+2024/03/05 13:24:21 16 :  call for  3  times
+2024/03/05 13:24:21 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 13:24:21 worker  16 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 13:24:21 16  waiting for order
+2024/03/05 13:24:23 16 :  call for  4  times
+2024/03/05 13:24:23 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 13:24:23 worker  16 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 13:24:23 16  waiting for order
+2024/03/05 13:24:25 16 :  call for  5  times
+2024/03/05 13:24:25 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 13:24:25 worker  16 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 13:24:25 16  waiting for order
+2024/03/05 13:24:27 16 :  call for  6  times
+2024/03/05 13:24:27 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 13:24:27 worker  16 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0

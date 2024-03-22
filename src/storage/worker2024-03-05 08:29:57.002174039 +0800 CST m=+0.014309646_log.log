@@ -1,0 +1,34 @@
+2024/03/05 08:29:57 57 :  call for  1  times
+2024/03/05 08:29:57 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 08:29:57 worker  57 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0
+2024/03/05 08:29:57 start 0 map
+2024/03/05 08:29:57 Worker finish order 0, order type 0
+2024/03/05 08:29:58 57 :  call for  2  times
+2024/03/05 08:29:58 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 08:29:58 worker  57 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 08:29:58 start 4 map
+2024/03/05 08:29:58 Worker finish order 4, order type 0
+2024/03/05 08:29:59 57 :  call for  3  times
+2024/03/05 08:29:59 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 08:29:59 worker  57 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 08:29:59 start 7 map
+2024/03/05 08:29:59 Worker finish order 7, order type 0
+2024/03/05 08:30:00 57 :  call for  4  times
+2024/03/05 08:30:00 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:30:00 worker  57 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:30:00 57  waiting for order
+2024/03/05 08:30:02 57 :  call for  5  times
+2024/03/05 08:30:02 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:30:02 worker  57 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:30:02 57  waiting for order
+2024/03/05 08:30:04 57 :  call for  6  times
+2024/03/05 08:30:04 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:30:04 worker  57 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:30:04 57  waiting for order
+2024/03/05 08:30:06 57 :  call for  7  times
+2024/03/05 08:30:06 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 08:30:06 worker  57 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 08:30:06 57  waiting for order
+2024/03/05 08:30:08 57 :  call for  8  times
+2024/03/05 08:30:08 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 08:30:08 worker  57 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0

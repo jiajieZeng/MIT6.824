@@ -28,7 +28,7 @@ func main() {
 
 	mapf, reducef := loadPlugin(os.Args[1])
 	now := time.Now()
-	filename := fmt.Sprintf("../../storage/worker%v_log.log", now)
+	filename := fmt.Sprintf("../../storage/worker_log.log", now)
 	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))

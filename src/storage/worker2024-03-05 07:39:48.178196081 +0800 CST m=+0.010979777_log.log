@@ -1,0 +1,3 @@
+2024/03/05 07:39:48 48 :  call for  1  times
+2024/03/05 07:39:48 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 07:39:48 worker  48 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0

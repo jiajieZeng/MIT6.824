@@ -1,0 +1,108 @@
+2024/03/05 12:09:24 24 :  call for  1  times
+2024/03/05 12:09:24 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:24 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:24 24  waiting for order
+2024/03/05 12:09:26 24 :  call for  2  times
+2024/03/05 12:09:26 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:26 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:26 24  waiting for order
+2024/03/05 12:09:28 24 :  call for  3  times
+2024/03/05 12:09:28 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:28 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:28 24  waiting for order
+2024/03/05 12:09:30 24 :  call for  4  times
+2024/03/05 12:09:30 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:30 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:30 24  waiting for order
+2024/03/05 12:09:32 24 :  call for  5  times
+2024/03/05 12:09:32 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:32 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:32 24  waiting for order
+2024/03/05 12:09:34 24 :  call for  6  times
+2024/03/05 12:09:34 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:34 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:34 24  waiting for order
+2024/03/05 12:09:36 24 :  call for  7  times
+2024/03/05 12:09:36 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:36 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:36 24  waiting for order
+2024/03/05 12:09:38 24 :  call for  8  times
+2024/03/05 12:09:38 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:38 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:38 24  waiting for order
+2024/03/05 12:09:40 24 :  call for  9  times
+2024/03/05 12:09:40 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:40 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:40 24  waiting for order
+2024/03/05 12:09:42 24 :  call for  10  times
+2024/03/05 12:09:42 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:09:42 worker  24 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:09:42 24  waiting for order
+2024/03/05 12:09:44 24 :  call for  11  times
+2024/03/05 12:09:44 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 12:09:44 worker  24 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 12:09:50 start 1 map
+2024/03/05 12:09:50 Worker finish order 1, order type 0
+2024/03/05 12:09:51 24 :  call for  12  times
+2024/03/05 12:09:51 CallOrder: worker get response &{1 [mr-tmp-0-1 mr-tmp-1-1 mr-tmp-2-1 mr-tmp-3-1 mr-tmp-4-1 mr-tmp-5-1 mr-tmp-6-1 mr-tmp-7-1] 9 0}
+2024/03/05 12:09:51 worker  24 get order:  &{1 [mr-tmp-0-1 mr-tmp-1-1 mr-tmp-2-1 mr-tmp-3-1 mr-tmp-4-1 mr-tmp-5-1 mr-tmp-6-1 mr-tmp-7-1] 9 0}  order Type 1
+2024/03/05 12:09:51 start 9 map
+2024/03/05 12:09:51 Worker finish order 9, order type 1
+2024/03/05 12:09:52 24 :  call for  13  times
+2024/03/05 12:09:52 CallOrder: worker get response &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}
+2024/03/05 12:09:52 worker  24 get order:  &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}  order Type 1
+2024/03/05 12:09:52 start 12 map
+2024/03/05 12:09:52 Worker finish order 12, order type 1
+2024/03/05 12:09:53 24 :  call for  14  times
+2024/03/05 12:09:53 CallOrder: worker get response &{1 [mr-tmp-0-7 mr-tmp-1-7 mr-tmp-2-7 mr-tmp-3-7 mr-tmp-4-7 mr-tmp-5-7 mr-tmp-6-7 mr-tmp-7-7] 15 0}
+2024/03/05 12:09:53 worker  24 get order:  &{1 [mr-tmp-0-7 mr-tmp-1-7 mr-tmp-2-7 mr-tmp-3-7 mr-tmp-4-7 mr-tmp-5-7 mr-tmp-6-7 mr-tmp-7-7] 15 0}  order Type 1
+2024/03/05 12:09:53 start 15 map
+2024/03/05 12:09:53 Worker finish order 15, order type 1
+2024/03/05 12:09:54 24 :  call for  15  times
+2024/03/05 12:09:54 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:09:54 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:09:54 24  waiting for order
+2024/03/05 12:09:56 24 :  call for  16  times
+2024/03/05 12:09:56 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:09:56 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:09:56 24  waiting for order
+2024/03/05 12:09:58 24 :  call for  17  times
+2024/03/05 12:09:58 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:09:58 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:09:58 24  waiting for order
+2024/03/05 12:10:00 24 :  call for  18  times
+2024/03/05 12:10:00 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:00 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:00 24  waiting for order
+2024/03/05 12:10:02 24 :  call for  19  times
+2024/03/05 12:10:02 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 12:10:02 worker  24 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1
+2024/03/05 12:10:02 start 10 map
+2024/03/05 12:10:02 Worker finish order 10, order type 1
+2024/03/05 12:10:03 24 :  call for  20  times
+2024/03/05 12:10:03 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:03 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:03 24  waiting for order
+2024/03/05 12:10:05 24 :  call for  21  times
+2024/03/05 12:10:05 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:05 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:05 24  waiting for order
+2024/03/05 12:10:07 24 :  call for  22  times
+2024/03/05 12:10:07 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:07 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:07 24  waiting for order
+2024/03/05 12:10:09 24 :  call for  23  times
+2024/03/05 12:10:09 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:09 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:09 24  waiting for order
+2024/03/05 12:10:11 24 :  call for  24  times
+2024/03/05 12:10:11 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:11 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:11 24  waiting for order
+2024/03/05 12:10:13 24 :  call for  25  times
+2024/03/05 12:10:13 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 12:10:13 worker  24 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 12:10:13 24  waiting for order
+2024/03/05 12:10:15 24 :  call for  26  times
+2024/03/05 12:10:15 CallOrder: worker get response &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}
+2024/03/05 12:10:15 worker  24 get order:  &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}  order Type 1

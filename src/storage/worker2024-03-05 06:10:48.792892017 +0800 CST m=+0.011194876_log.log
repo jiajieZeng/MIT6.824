@@ -1,0 +1,23 @@
+2024/03/05 06:10:48 48 :  call for  1  times
+2024/03/05 06:10:48 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:10:48 worker  48 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:10:48 48  waiting for order
+2024/03/05 06:10:50 48 :  call for  2  times
+2024/03/05 06:10:50 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:10:50 worker  48 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:10:50 48  waiting for order
+2024/03/05 06:10:52 48 :  call for  3  times
+2024/03/05 06:10:52 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:10:52 worker  48 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:10:52 48  waiting for order
+2024/03/05 06:10:54 48 :  call for  4  times
+2024/03/05 06:10:54 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:10:54 worker  48 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:10:54 48  waiting for order
+2024/03/05 06:10:56 48 :  call for  5  times
+2024/03/05 06:10:56 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:10:56 worker  48 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:10:56 48  waiting for order
+2024/03/05 06:10:58 48 :  call for  6  times
+2024/03/05 06:10:58 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 06:10:58 worker  48 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0

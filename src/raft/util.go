@@ -3,7 +3,7 @@ package raft
 import "log"
 
 // Debugging
-const Debug = false
+const Debug = true
 
 func DPrintf(format string, a ...interface{}) (n int, err error) {
 	if Debug {
@@ -11,3 +11,5 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 	}
 	return
 }
+
+var stateArray = [3]string{"Candidate", "Leader", "Follower"}

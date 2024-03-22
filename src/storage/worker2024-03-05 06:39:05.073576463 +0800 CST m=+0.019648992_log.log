@@ -1,0 +1,31 @@
+2024/03/05 06:39:05 5 :  call for  1  times
+2024/03/05 06:39:05 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 06:39:05 worker  5 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 06:39:13 start 1 map
+2024/03/05 06:39:13 Worker finish order 1, order type 0
+2024/03/05 06:39:14 5 :  call for  2  times
+2024/03/05 06:39:14 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 06:39:14 worker  5 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 06:39:14 5  waiting for order
+2024/03/05 06:39:16 5 :  call for  3  times
+2024/03/05 06:39:16 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 06:39:16 worker  5 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0
+2024/03/05 06:39:18 start 0 map
+2024/03/05 06:39:18 Worker finish order 0, order type 0
+2024/03/05 06:39:19 5 :  call for  4  times
+2024/03/05 06:39:19 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 06:39:19 worker  5 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 06:39:28 start 8 map
+2024/03/05 06:39:28 Worker finish order 8, order type 1
+2024/03/05 06:39:29 5 :  call for  5  times
+2024/03/05 06:39:29 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 06:39:29 worker  5 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 06:39:29 5  waiting for order
+2024/03/05 06:39:31 5 :  call for  6  times
+2024/03/05 06:39:31 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 06:39:31 worker  5 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 06:39:31 5  waiting for order
+2024/03/05 06:39:33 5 :  call for  7  times
+2024/03/05 06:39:33 CallOrder: worker get response &{4 [] 0 0}
+2024/03/05 06:39:33 worker  5 get order:  &{4 [] 0 0}  order Type 4
+2024/03/05 06:39:34 5  killed

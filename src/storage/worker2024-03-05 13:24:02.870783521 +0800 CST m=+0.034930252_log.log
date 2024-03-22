@@ -1,0 +1,33 @@
+2024/03/05 13:24:02 2 :  call for  1  times
+2024/03/05 13:24:02 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 13:24:02 worker  2 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 13:24:02 start 1 map
+2024/03/05 13:24:02 Worker finish order 1, order type 0
+2024/03/05 13:24:03 2 :  call for  2  times
+2024/03/05 13:24:03 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 13:24:03 worker  2 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0
+2024/03/05 13:24:03 start 5 map
+2024/03/05 13:24:03 Worker finish order 5, order type 0
+2024/03/05 13:24:04 2 :  call for  3  times
+2024/03/05 13:24:04 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 13:24:04 worker  2 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 13:24:04 start 6 map
+2024/03/05 13:24:04 Worker finish order 6, order type 0
+2024/03/05 13:24:05 2 :  call for  4  times
+2024/03/05 13:24:05 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 13:24:05 worker  2 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 13:24:05 2  waiting for order
+2024/03/05 13:24:07 2 :  call for  5  times
+2024/03/05 13:24:07 CallOrder: worker get response &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}
+2024/03/05 13:24:07 worker  2 get order:  &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}  order Type 1
+2024/03/05 13:24:07 start 12 map
+2024/03/05 13:24:07 Worker finish order 12, order type 1
+2024/03/05 13:24:08 2 :  call for  6  times
+2024/03/05 13:24:08 CallOrder: worker get response &{1 [mr-tmp-0-6 mr-tmp-1-6 mr-tmp-2-6 mr-tmp-3-6 mr-tmp-4-6 mr-tmp-5-6 mr-tmp-6-6 mr-tmp-7-6] 14 0}
+2024/03/05 13:24:08 worker  2 get order:  &{1 [mr-tmp-0-6 mr-tmp-1-6 mr-tmp-2-6 mr-tmp-3-6 mr-tmp-4-6 mr-tmp-5-6 mr-tmp-6-6 mr-tmp-7-6] 14 0}  order Type 1
+2024/03/05 13:24:11 start 14 map
+2024/03/05 13:24:11 Worker finish order 14, order type 1
+2024/03/05 13:24:12 2 :  call for  7  times
+2024/03/05 13:24:12 CallOrder: worker get response &{4 [] 0 0}
+2024/03/05 13:24:12 worker  2 get order:  &{4 [] 0 0}  order Type 4
+2024/03/05 13:24:13 2  killed

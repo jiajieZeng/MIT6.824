@@ -1,0 +1,55 @@
+2024/03/05 09:40:55 55 :  call for  1  times
+2024/03/05 09:40:55 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 09:40:55 worker  55 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0
+2024/03/05 09:40:55 start 0 map
+2024/03/05 09:40:55 Worker finish order 0, order type 0
+2024/03/05 09:40:56 55 :  call for  2  times
+2024/03/05 09:40:56 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 09:40:56 worker  55 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0
+2024/03/05 09:40:56 start 2 map
+2024/03/05 09:40:56 Worker finish order 2, order type 0
+2024/03/05 09:40:57 55 :  call for  3  times
+2024/03/05 09:40:57 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 09:40:57 worker  55 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 09:40:57 start 4 map
+2024/03/05 09:40:57 Worker finish order 4, order type 0
+2024/03/05 09:40:58 55 :  call for  4  times
+2024/03/05 09:40:58 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 09:40:58 worker  55 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 09:40:58 start 7 map
+2024/03/05 09:40:58 Worker finish order 7, order type 0
+2024/03/05 09:40:59 55 :  call for  5  times
+2024/03/05 09:40:59 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 09:40:59 worker  55 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 09:41:00 start 8 map
+2024/03/05 09:41:00 Worker finish order 8, order type 1
+2024/03/05 09:41:01 55 :  call for  6  times
+2024/03/05 09:41:01 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 09:41:01 worker  55 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1
+2024/03/05 09:41:02 start 10 map
+2024/03/05 09:41:02 Worker finish order 10, order type 1
+2024/03/05 09:41:03 55 :  call for  7  times
+2024/03/05 09:41:03 CallOrder: worker get response &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}
+2024/03/05 09:41:03 worker  55 get order:  &{1 [mr-tmp-0-4 mr-tmp-1-4 mr-tmp-2-4 mr-tmp-3-4 mr-tmp-4-4 mr-tmp-5-4 mr-tmp-6-4 mr-tmp-7-4] 12 0}  order Type 1
+2024/03/05 09:41:05 start 12 map
+2024/03/05 09:41:05 Worker finish order 12, order type 1
+2024/03/05 09:41:06 55 :  call for  8  times
+2024/03/05 09:41:06 CallOrder: worker get response &{1 [mr-tmp-0-6 mr-tmp-1-6 mr-tmp-2-6 mr-tmp-3-6 mr-tmp-4-6 mr-tmp-5-6 mr-tmp-6-6 mr-tmp-7-6] 14 0}
+2024/03/05 09:41:06 worker  55 get order:  &{1 [mr-tmp-0-6 mr-tmp-1-6 mr-tmp-2-6 mr-tmp-3-6 mr-tmp-4-6 mr-tmp-5-6 mr-tmp-6-6 mr-tmp-7-6] 14 0}  order Type 1
+2024/03/05 09:41:07 start 14 map
+2024/03/05 09:41:07 Worker finish order 14, order type 1
+2024/03/05 09:41:08 55 :  call for  9  times
+2024/03/05 09:41:08 CallOrder: worker get response &{1 [mr-tmp-0-8 mr-tmp-1-8 mr-tmp-2-8 mr-tmp-3-8 mr-tmp-4-8 mr-tmp-5-8 mr-tmp-6-8 mr-tmp-7-8] 16 0}
+2024/03/05 09:41:08 worker  55 get order:  &{1 [mr-tmp-0-8 mr-tmp-1-8 mr-tmp-2-8 mr-tmp-3-8 mr-tmp-4-8 mr-tmp-5-8 mr-tmp-6-8 mr-tmp-7-8] 16 0}  order Type 1
+2024/03/05 09:41:08 start 16 map
+2024/03/05 09:41:08 Worker finish order 16, order type 1
+2024/03/05 09:41:09 55 :  call for  10  times
+2024/03/05 09:41:09 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 09:41:09 worker  55 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 09:41:09 55  waiting for order
+2024/03/05 09:41:11 55 :  call for  11  times
+2024/03/05 09:41:11 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 09:41:11 worker  55 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 09:41:11 55  waiting for order
+2024/03/05 09:41:13 55 :  call for  12  times
+2024/03/05 09:41:13 dialing:dial unix /var/tmp/824-mr-0: connect: connection refused

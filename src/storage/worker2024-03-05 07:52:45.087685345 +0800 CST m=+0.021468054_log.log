@@ -1,0 +1,22 @@
+2024/03/05 07:52:45 45 :  call for  1  times
+2024/03/05 07:52:45 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 07:52:45 worker  45 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 07:52:45 start 1 map
+2024/03/05 07:52:45 Worker finish order 1, order type 0
+2024/03/05 07:52:46 45 :  call for  2  times
+2024/03/05 07:52:46 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 07:52:46 worker  45 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 07:52:54 start 4 map
+2024/03/05 07:52:54 Worker finish order 4, order type 0
+2024/03/05 07:52:55 45 :  call for  3  times
+2024/03/05 07:52:55 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 07:52:55 worker  45 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 07:52:55 45  waiting for order
+2024/03/05 07:52:57 45 :  call for  4  times
+2024/03/05 07:52:57 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 07:52:57 worker  45 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0
+2024/03/05 07:52:57 start 2 map
+2024/03/05 07:52:57 Worker finish order 2, order type 0
+2024/03/05 07:52:58 45 :  call for  5  times
+2024/03/05 07:52:58 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 07:52:58 worker  45 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0

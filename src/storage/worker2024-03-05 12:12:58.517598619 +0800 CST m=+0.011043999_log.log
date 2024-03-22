@@ -1,0 +1,37 @@
+2024/03/05 12:12:58 58 :  call for  1  times
+2024/03/05 12:12:58 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:12:58 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:12:58 58  waiting for order
+2024/03/05 12:13:00 58 :  call for  2  times
+2024/03/05 12:13:00 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:13:00 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:13:00 58  waiting for order
+2024/03/05 12:13:02 58 :  call for  3  times
+2024/03/05 12:13:02 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:13:02 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:13:02 58  waiting for order
+2024/03/05 12:13:04 58 :  call for  4  times
+2024/03/05 12:13:04 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:13:04 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:13:04 58  waiting for order
+2024/03/05 12:13:06 58 :  call for  5  times
+2024/03/05 12:13:06 CallOrder: worker get response &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 12:13:06 worker  58 get order:  &{0 [../pg-grimm.txt] 3 10}  order Type 0
+2024/03/05 12:13:06 start 3 map
+2024/03/05 12:13:06 Worker finish order 3, order type 0
+2024/03/05 12:13:07 58 :  call for  6  times
+2024/03/05 12:13:07 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 12:13:07 worker  58 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0
+2024/03/05 12:13:12 start 5 map
+2024/03/05 12:13:12 Worker finish order 5, order type 0
+2024/03/05 12:13:13 58 :  call for  7  times
+2024/03/05 12:13:13 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:13:13 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:13:13 58  waiting for order
+2024/03/05 12:13:15 58 :  call for  8  times
+2024/03/05 12:13:15 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:13:15 worker  58 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:13:15 58  waiting for order
+2024/03/05 12:13:17 58 :  call for  9  times
+2024/03/05 12:13:17 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 12:13:17 worker  58 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1

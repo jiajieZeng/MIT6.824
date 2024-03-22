@@ -1,0 +1,19 @@
+2024/03/05 05:01:53 53 :  call for  1  times
+2024/03/05 05:01:53 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 05:01:53 worker  53 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 05:01:53 53  waiting for order
+2024/03/05 05:01:55 53 :  call for  2  times
+2024/03/05 05:01:55 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 05:01:55 worker  53 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 05:01:55 53  waiting for order
+2024/03/05 05:01:57 53 :  call for  3  times
+2024/03/05 05:01:57 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 05:01:57 worker  53 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 05:01:57 53  waiting for order
+2024/03/05 05:01:59 53 :  call for  4  times
+2024/03/05 05:01:59 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 05:01:59 worker  53 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 05:01:59 53  waiting for order
+2024/03/05 05:02:01 53 :  call for  5  times
+2024/03/05 05:02:01 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 05:02:01 worker  53 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0

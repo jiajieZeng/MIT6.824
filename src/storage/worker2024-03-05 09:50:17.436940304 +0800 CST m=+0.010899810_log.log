@@ -1,0 +1,7 @@
+2024/03/05 09:50:17 17 :  call for  1  times
+2024/03/05 09:50:17 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 09:50:17 worker  17 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 09:50:17 17  waiting for order
+2024/03/05 09:50:19 17 :  call for  2  times
+2024/03/05 09:50:19 CallOrder: worker get response &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}
+2024/03/05 09:50:19 worker  17 get order:  &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}  order Type 1

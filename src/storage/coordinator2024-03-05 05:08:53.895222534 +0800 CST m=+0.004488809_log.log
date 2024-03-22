@@ -1,0 +1,94 @@
+2024/03/05 05:08:53 making map order &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 05:08:53 making map order &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 05:08:53 done with make map order
+2024/03/05 05:08:53 Map: 0 done vs. 8 working, Reduce 0 done vs. 0 working
+2024/03/05 05:08:54 Coordinator work
+2024/03/05 05:08:54 Coordinator status 0
+2024/03/05 05:08:54 Coordinator work
+2024/03/05 05:08:54 Coordinator status 0
+2024/03/05 05:08:55 IsDone &{0 2024-03-05 05:08:54.905820074 +0800 CST m=+1.015086347 0xc000112120} true
+2024/03/05 05:08:55 Order 0 finish Map
+2024/03/05 05:08:55 IsDone &{0 2024-03-05 05:08:54.914830343 +0800 CST m=+1.024096601 0xc0001121b0} true
+2024/03/05 05:08:55 Order 1 finish Map
+2024/03/05 05:08:56 Coordinator work
+2024/03/05 05:08:56 Coordinator status 0
+2024/03/05 05:08:56 Coordinator work
+2024/03/05 05:08:56 Coordinator status 0
+2024/03/05 05:08:56 IsDone &{0 2024-03-05 05:08:56.042412961 +0800 CST m=+2.151679219 0xc000112240} true
+2024/03/05 05:08:56 Order 2 finish Map
+2024/03/05 05:08:56 IsDone &{0 2024-03-05 05:08:56.15633753 +0800 CST m=+2.265603789 0xc0001122d0} true
+2024/03/05 05:08:56 Order 3 finish Map
+2024/03/05 05:08:57 Coordinator work
+2024/03/05 05:08:57 Coordinator status 0
+2024/03/05 05:08:57 Coordinator work
+2024/03/05 05:08:57 Coordinator status 0
+2024/03/05 05:08:57 IsDone &{0 2024-03-05 05:08:57.367149529 +0800 CST m=+3.476415781 0xc0001123f0} true
+2024/03/05 05:08:57 Order 5 finish Map
+2024/03/05 05:08:57 IsDone &{0 2024-03-05 05:08:57.233751696 +0800 CST m=+3.343017951 0xc000112360} true
+2024/03/05 05:08:57 Order 4 finish Map
+2024/03/05 05:08:58 Coordinator work
+2024/03/05 05:08:58 Coordinator status 0
+2024/03/05 05:08:58 Coordinator work
+2024/03/05 05:08:58 Coordinator status 0
+2024/03/05 05:08:58 IsDone &{0 2024-03-05 05:08:58.487616119 +0800 CST m=+4.596882369 0xc000112480} true
+2024/03/05 05:08:58 Order 6 finish Map
+2024/03/05 05:08:58 IsDone &{0 2024-03-05 05:08:58.49193489 +0800 CST m=+4.601201153 0xc000112510} true
+2024/03/05 05:08:58 Order 7 finish Map
+2024/03/05 05:08:59 Coordinator work
+2024/03/05 05:08:59 Coordinator status 0
+2024/03/05 05:08:59 Map: 8 done vs. 0 working, Reduce 0 done vs. 0 working
+2024/03/05 05:08:59 forward: forward to Reuce Phase
+2024/03/05 05:08:59 making reduce order : 8
+2024/03/05 05:08:59 making reduce order : 9
+2024/03/05 05:08:59 making reduce order : 10
+2024/03/05 05:08:59 making reduce order : 11
+2024/03/05 05:08:59 making reduce order : 12
+2024/03/05 05:08:59 making reduce order : 13
+2024/03/05 05:08:59 making reduce order : 14
+2024/03/05 05:08:59 making reduce order : 15
+2024/03/05 05:08:59 making reduce order : 16
+2024/03/05 05:08:59 making reduce order : 17
+2024/03/05 05:08:59 done with make reduce order
+2024/03/05 05:08:59 Map: 8 done vs. 0 working, Reduce 0 done vs. 10 working
+2024/03/05 05:08:59 Coordinator work
+2024/03/05 05:08:59 Coordinator status 1
+2024/03/05 05:08:59 Order 8 finish Reduce
+2024/03/05 05:09:00 Coordinator work
+2024/03/05 05:09:00 Coordinator status 1
+2024/03/05 05:09:01 Order 9 finish Reduce
+2024/03/05 05:09:01 Coordinator work
+2024/03/05 05:09:01 Coordinator status 1
+2024/03/05 05:09:01 Order 10 finish Reduce
+2024/03/05 05:09:02 Coordinator work
+2024/03/05 05:09:02 Coordinator status 1
+2024/03/05 05:09:02 Order 11 finish Reduce
+2024/03/05 05:09:02 Coordinator work
+2024/03/05 05:09:02 Coordinator status 1
+2024/03/05 05:09:03 Order 12 finish Reduce
+2024/03/05 05:09:03 Coordinator work
+2024/03/05 05:09:03 Coordinator status 1
+2024/03/05 05:09:03 Order 13 finish Reduce
+2024/03/05 05:09:04 Coordinator work
+2024/03/05 05:09:04 Coordinator status 1
+2024/03/05 05:09:04 Order 14 finish Reduce
+2024/03/05 05:09:04 Coordinator work
+2024/03/05 05:09:04 Coordinator status 1
+2024/03/05 05:09:04 Order 15 finish Reduce
+2024/03/05 05:09:05 Coordinator work
+2024/03/05 05:09:05 Coordinator status 1
+2024/03/05 05:09:05 Order 16 finish Reduce
+2024/03/05 05:09:05 Coordinator work
+2024/03/05 05:09:05 Coordinator status 1
+2024/03/05 05:09:05 Order 17 finish Reduce
+2024/03/05 05:09:06 Coordinator work
+2024/03/05 05:09:06 Coordinator status 1
+2024/03/05 05:09:06 Map: 8 done vs. 0 working, Reduce 10 done vs. 0 working
+2024/03/05 05:09:06 forward: forward to done phase
+2024/03/05 05:09:06 Coordinator work
+2024/03/05 05:09:06 Coordinator status 2

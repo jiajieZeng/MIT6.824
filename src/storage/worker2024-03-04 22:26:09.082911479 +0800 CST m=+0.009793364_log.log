@@ -1,0 +1,19 @@
+2024/03/04 22:26:09 9 :  call for  1  times
+2024/03/04 22:26:09 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 22:26:09 worker  9 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 22:26:09 9  waiting for order
+2024/03/04 22:26:11 9 :  call for  2  times
+2024/03/04 22:26:11 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 22:26:11 worker  9 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 22:26:11 9  waiting for order
+2024/03/04 22:26:13 9 :  call for  3  times
+2024/03/04 22:26:13 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 22:26:13 worker  9 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 22:26:13 9  waiting for order
+2024/03/04 22:26:15 9 :  call for  4  times
+2024/03/04 22:26:15 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 22:26:15 worker  9 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 22:26:15 9  waiting for order
+2024/03/04 22:26:17 9 :  call for  5  times
+2024/03/04 22:26:17 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/04 22:26:17 worker  9 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0

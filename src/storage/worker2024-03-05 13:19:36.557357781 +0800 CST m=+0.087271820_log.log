@@ -1,0 +1,39 @@
+2024/03/05 13:19:36 36 :  call for  1  times
+2024/03/05 13:19:36 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 13:19:36 worker  36 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 13:19:39 start 1 map
+2024/03/05 13:19:39 Worker finish order 1, order type 0
+2024/03/05 13:19:40 36 :  call for  2  times
+2024/03/05 13:19:40 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 13:19:40 worker  36 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0
+2024/03/05 13:19:40 start 5 map
+2024/03/05 13:19:40 Worker finish order 5, order type 0
+2024/03/05 13:19:41 36 :  call for  3  times
+2024/03/05 13:19:41 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 13:19:41 worker  36 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 13:19:44 start 6 map
+2024/03/05 13:19:44 Worker finish order 6, order type 0
+2024/03/05 13:19:45 36 :  call for  4  times
+2024/03/05 13:19:45 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 13:19:45 worker  36 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 13:19:46 start 8 map
+2024/03/05 13:19:46 Worker finish order 8, order type 1
+2024/03/05 13:19:47 36 :  call for  5  times
+2024/03/05 13:19:47 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 13:19:47 worker  36 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1
+2024/03/05 13:19:48 start 10 map
+2024/03/05 13:19:48 Worker finish order 10, order type 1
+2024/03/05 13:19:49 36 :  call for  6  times
+2024/03/05 13:19:49 CallOrder: worker get response &{1 [mr-tmp-0-7 mr-tmp-1-7 mr-tmp-2-7 mr-tmp-3-7 mr-tmp-4-7 mr-tmp-5-7 mr-tmp-6-7 mr-tmp-7-7] 15 0}
+2024/03/05 13:19:49 worker  36 get order:  &{1 [mr-tmp-0-7 mr-tmp-1-7 mr-tmp-2-7 mr-tmp-3-7 mr-tmp-4-7 mr-tmp-5-7 mr-tmp-6-7 mr-tmp-7-7] 15 0}  order Type 1
+2024/03/05 13:19:50 start 15 map
+2024/03/05 13:19:50 Worker finish order 15, order type 1
+2024/03/05 13:19:51 36 :  call for  7  times
+2024/03/05 13:19:51 CallOrder: worker get response &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}
+2024/03/05 13:19:51 worker  36 get order:  &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}  order Type 1
+2024/03/05 13:19:52 start 17 map
+2024/03/05 13:19:52 Worker finish order 17, order type 1
+2024/03/05 13:19:53 36 :  call for  8  times
+2024/03/05 13:19:53 CallOrder: worker get response &{4 [] 0 0}
+2024/03/05 13:19:53 worker  36 get order:  &{4 [] 0 0}  order Type 4
+2024/03/05 13:19:54 36  killed

@@ -1,0 +1,29 @@
+2024/03/05 02:32:57 57 :  call for  1  times
+2024/03/05 02:32:57 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 02:32:57 worker  57 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 02:32:57 57  waiting for order
+2024/03/05 02:32:59 57 :  call for  2  times
+2024/03/05 02:32:59 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 02:32:59 worker  57 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 02:32:59 57  waiting for order
+2024/03/05 02:33:01 57 :  call for  3  times
+2024/03/05 02:33:01 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 02:33:01 worker  57 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 02:33:01 57  waiting for order
+2024/03/05 02:33:03 57 :  call for  4  times
+2024/03/05 02:33:03 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 02:33:03 worker  57 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 02:33:03 57  waiting for order
+2024/03/05 02:33:05 57 :  call for  5  times
+2024/03/05 02:33:05 CallOrder: worker get response &{3 [] 0 0}
+2024/03/05 02:33:05 worker  57 get order:  &{3 [] 0 0}  order Type 3
+2024/03/05 02:33:05 57  waiting for order
+2024/03/05 02:33:07 57 :  call for  6  times
+2024/03/05 02:33:07 CallOrder: worker get response &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}
+2024/03/05 02:33:07 worker  57 get order:  &{1 [mr-tmp-0-9 mr-tmp-1-9 mr-tmp-2-9 mr-tmp-3-9 mr-tmp-4-9 mr-tmp-5-9 mr-tmp-6-9 mr-tmp-7-9] 17 0}  order Type 1
+2024/03/05 02:33:07 start 17 map
+2024/03/05 02:33:07 Worker finish order 17, order type 1
+2024/03/05 02:33:08 57 :  call for  7  times
+2024/03/05 02:33:08 CallOrder: worker get response &{4 [] 0 0}
+2024/03/05 02:33:08 worker  57 get order:  &{4 [] 0 0}  order Type 4
+2024/03/05 02:33:09 57  killed

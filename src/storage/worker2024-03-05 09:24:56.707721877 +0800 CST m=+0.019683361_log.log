@@ -1,0 +1,34 @@
+2024/03/05 09:24:56 56 :  call for  1  times
+2024/03/05 09:24:56 CallOrder: worker get response &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 09:24:56 worker  56 get order:  &{0 [../pg-grimm.txt] 3 10}  order Type 0
+2024/03/05 09:24:56 start 3 map
+2024/03/05 09:24:56 Worker finish order 3, order type 0
+2024/03/05 09:24:57 56 :  call for  2  times
+2024/03/05 09:24:57 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 09:24:57 worker  56 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 09:24:57 start 4 map
+2024/03/05 09:24:57 Worker finish order 4, order type 0
+2024/03/05 09:24:58 56 :  call for  3  times
+2024/03/05 09:24:58 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 09:24:58 worker  56 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 09:24:58 start 7 map
+2024/03/05 09:24:58 Worker finish order 7, order type 0
+2024/03/05 09:24:59 56 :  call for  4  times
+2024/03/05 09:24:59 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 09:24:59 worker  56 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 09:24:59 56  waiting for order
+2024/03/05 09:25:01 56 :  call for  5  times
+2024/03/05 09:25:01 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 09:25:01 worker  56 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 09:25:01 56  waiting for order
+2024/03/05 09:25:03 56 :  call for  6  times
+2024/03/05 09:25:03 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 09:25:03 worker  56 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 09:25:03 56  waiting for order
+2024/03/05 09:25:05 56 :  call for  7  times
+2024/03/05 09:25:05 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 09:25:05 worker  56 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 09:25:05 56  waiting for order
+2024/03/05 09:25:07 56 :  call for  8  times
+2024/03/05 09:25:07 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 09:25:07 worker  56 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0

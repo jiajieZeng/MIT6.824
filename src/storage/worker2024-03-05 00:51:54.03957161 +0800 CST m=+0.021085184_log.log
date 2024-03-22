@@ -1,0 +1,29 @@
+2024/03/05 00:51:54 54 :  call for  1  times
+2024/03/05 00:51:54 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 00:51:54 worker  54 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0
+2024/03/05 00:51:58 start 2 map
+2024/03/05 00:51:58 Worker finish order 2, order type 0
+2024/03/05 00:51:59 54 :  call for  2  times
+2024/03/05 00:51:59 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 00:51:59 worker  54 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 00:52:06 start 7 map
+2024/03/05 00:52:06 Worker finish order 7, order type 0
+2024/03/05 00:52:07 54 :  call for  3  times
+2024/03/05 00:52:07 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 00:52:07 worker  54 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 00:52:09 start 6 map
+2024/03/05 00:52:09 Worker finish order 6, order type 0
+2024/03/05 00:52:10 54 :  call for  4  times
+2024/03/05 00:52:10 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 00:52:10 worker  54 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 00:52:10 start 8 map
+2024/03/05 00:52:10 Worker finish order 8, order type 1
+2024/03/05 00:52:11 54 :  call for  5  times
+2024/03/05 00:52:11 CallOrder: worker get response &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}
+2024/03/05 00:52:11 worker  54 get order:  &{1 [mr-tmp-0-2 mr-tmp-1-2 mr-tmp-2-2 mr-tmp-3-2 mr-tmp-4-2 mr-tmp-5-2 mr-tmp-6-2 mr-tmp-7-2] 10 0}  order Type 1
+2024/03/05 00:52:21 start 10 map
+2024/03/05 00:52:21 Worker finish order 10, order type 1
+2024/03/05 00:52:22 54 :  call for  6  times
+2024/03/05 00:52:22 CallOrder: worker get response &{4 [] 0 0}
+2024/03/05 00:52:22 worker  54 get order:  &{4 [] 0 0}  order Type 4
+2024/03/05 00:52:23 54  killed

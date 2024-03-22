@@ -1,0 +1,20 @@
+2024/03/05 12:45:41 41 :  call for  1  times
+2024/03/05 12:45:41 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 12:45:41 worker  41 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 12:45:45 start 7 map
+2024/03/05 12:45:45 Worker finish order 7, order type 0
+2024/03/05 12:45:46 41 :  call for  2  times
+2024/03/05 12:45:46 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:45:46 worker  41 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:45:46 41  waiting for order
+2024/03/05 12:45:48 41 :  call for  3  times
+2024/03/05 12:45:48 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:45:48 worker  41 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:45:48 41  waiting for order
+2024/03/05 12:45:50 41 :  call for  4  times
+2024/03/05 12:45:50 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:45:50 worker  41 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:45:50 41  waiting for order
+2024/03/05 12:45:52 41 :  call for  5  times
+2024/03/05 12:45:52 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 12:45:52 worker  41 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0

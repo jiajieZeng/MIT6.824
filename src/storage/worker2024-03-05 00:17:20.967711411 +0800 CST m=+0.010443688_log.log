@@ -1,0 +1,23 @@
+2024/03/05 00:17:20 20 :  call for  1  times
+2024/03/05 00:17:20 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:20 worker  20 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:20 20  waiting for order
+2024/03/05 00:17:22 20 :  call for  2  times
+2024/03/05 00:17:22 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:22 worker  20 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:22 20  waiting for order
+2024/03/05 00:17:24 20 :  call for  3  times
+2024/03/05 00:17:24 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:24 worker  20 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:24 20  waiting for order
+2024/03/05 00:17:26 20 :  call for  4  times
+2024/03/05 00:17:26 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:26 worker  20 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:26 20  waiting for order
+2024/03/05 00:17:28 20 :  call for  5  times
+2024/03/05 00:17:28 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:28 worker  20 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:28 20  waiting for order
+2024/03/05 00:17:30 20 :  call for  6  times
+2024/03/05 00:17:30 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 00:17:30 worker  20 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0

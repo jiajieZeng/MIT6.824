@@ -1,0 +1,26 @@
+2024/03/04 22:00:27 27 :  call for  1  times
+2024/03/04 22:00:27 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:27 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:27 27  waiting for order
+2024/03/04 22:00:29 27 :  call for  2  times
+2024/03/04 22:00:29 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:29 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:29 27  waiting for order
+2024/03/04 22:00:31 27 :  call for  3  times
+2024/03/04 22:00:31 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:31 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:31 27  waiting for order
+2024/03/04 22:00:33 27 :  call for  4  times
+2024/03/04 22:00:33 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:33 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:33 27  waiting for order
+2024/03/04 22:00:35 27 :  call for  5  times
+2024/03/04 22:00:35 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:35 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:35 27  waiting for order
+2024/03/04 22:00:37 27 :  call for  6  times
+2024/03/04 22:00:37 CallOrder: worker get response &{3 [] 0 0}
+2024/03/04 22:00:37 worker  27 get order:  &{3 [] 0 0}  order Type 3
+2024/03/04 22:00:37 27  waiting for order
+2024/03/04 22:00:39 27 :  call for  7  times
+2024/03/04 22:00:39 dialing:dial unix /var/tmp/824-mr-0: connect: connection refused

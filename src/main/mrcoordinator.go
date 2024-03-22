@@ -24,7 +24,7 @@ func main() {
 		os.Exit(1)
 	}
 	now := time.Now()
-	filename := fmt.Sprintf("../../storage/coordinator%v_log.log", now)
+	filename := fmt.Sprintf("../../storage/coordinator_log.log", now)
 	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))

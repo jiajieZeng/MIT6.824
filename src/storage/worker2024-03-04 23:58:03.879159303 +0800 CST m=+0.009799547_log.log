@@ -1,0 +1,24 @@
+2024/03/04 23:58:03 3 :  call for  1  times
+2024/03/04 23:58:03 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/04 23:58:03 worker  3 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/04 23:58:03 start 7 map
+2024/03/04 23:58:03 Worker finish order 7, order type 0
+2024/03/04 23:58:04 3 :  call for  2  times
+2024/03/04 23:58:04 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 23:58:04 worker  3 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 23:58:04 3  waiting for order
+2024/03/04 23:58:06 3 :  call for  3  times
+2024/03/04 23:58:06 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 23:58:06 worker  3 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 23:58:06 3  waiting for order
+2024/03/04 23:58:08 3 :  call for  4  times
+2024/03/04 23:58:08 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 23:58:08 worker  3 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 23:58:08 3  waiting for order
+2024/03/04 23:58:10 3 :  call for  5  times
+2024/03/04 23:58:10 CallOrder: worker get response &{2 [] 0 0}
+2024/03/04 23:58:10 worker  3 get order:  &{2 [] 0 0}  order Type 2
+2024/03/04 23:58:10 3  waiting for order
+2024/03/04 23:58:12 3 :  call for  6  times
+2024/03/04 23:58:12 CallOrder: worker get response &{0 [../pg-grimm.txt] 3 10}
+2024/03/04 23:58:12 worker  3 get order:  &{0 [../pg-grimm.txt] 3 10}  order Type 0

@@ -1,0 +1,282 @@
+2024/03/05 09:30:36 making map order &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-grimm.txt] 3 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 09:30:36 making map order &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 09:30:36 done with make map order
+2024/03/05 09:30:36 Map: 0 done vs. 8 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:37 Coordinator work
+2024/03/05 09:30:37 Coordinator status 0
+2024/03/05 09:30:37 Coordinator work
+2024/03/05 09:30:37 Coordinator status 0
+2024/03/05 09:30:38 Coordinator work
+2024/03/05 09:30:38 Coordinator status 0
+2024/03/05 09:30:38 Coordinator work
+2024/03/05 09:30:38 Coordinator status 0
+2024/03/05 09:30:38 IsDone &{0 2024-03-05 09:30:37.989406267 +0800 CST m=+1.023451530 0xc00008a3f0} true
+2024/03/05 09:30:38 Order 1 finish Map
+2024/03/05 09:30:38 IsDone &{0 2024-03-05 09:30:38.007082045 +0800 CST m=+1.041127305 0xc00008a480} true
+2024/03/05 09:30:38 Order 2 finish Map
+2024/03/05 09:30:39 Coordinator work
+2024/03/05 09:30:39 Coordinator status 0
+2024/03/05 09:30:39 Coordinator work
+2024/03/05 09:30:39 Coordinator status 0
+2024/03/05 09:30:39 IsDone &{0 2024-03-05 09:30:39.027514998 +0800 CST m=+2.061560259 0xc00008a630} true
+2024/03/05 09:30:39 Order 5 finish Map
+2024/03/05 09:30:39 Coordinator work
+2024/03/05 09:30:39 Coordinator status 0
+2024/03/05 09:30:40 Coordinator work
+2024/03/05 09:30:40 Coordinator status 0
+2024/03/05 09:30:40 IsDone &{0 2024-03-05 09:30:40.041790201 +0800 CST m=+3.075835464 0xc00008a750} true
+2024/03/05 09:30:40 Order 7 finish Map
+2024/03/05 09:30:40 Coordinator work
+2024/03/05 09:30:40 Coordinator status 0
+2024/03/05 09:30:40 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:41 Coordinator work
+2024/03/05 09:30:41 Coordinator status 0
+2024/03/05 09:30:41 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:42 Coordinator work
+2024/03/05 09:30:42 Coordinator status 0
+2024/03/05 09:30:42 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:43 Coordinator work
+2024/03/05 09:30:43 Coordinator status 0
+2024/03/05 09:30:43 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:44 Coordinator work
+2024/03/05 09:30:44 Coordinator status 0
+2024/03/05 09:30:44 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:45 Coordinator work
+2024/03/05 09:30:45 Coordinator status 0
+2024/03/05 09:30:45 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:46 Coordinator work
+2024/03/05 09:30:46 Coordinator status 0
+2024/03/05 09:30:46 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:47 Coordinator work
+2024/03/05 09:30:47 Coordinator status 0
+2024/03/05 09:30:47 Map: 4 done vs. 4 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:47 IsDone &{0 2024-03-05 09:30:39.025470226 +0800 CST m=+2.059515488 0xc00008a5a0} true
+2024/03/05 09:30:47 Order 4 finish Map
+2024/03/05 09:30:48 Coordinator work
+2024/03/05 09:30:48 Coordinator status 0
+2024/03/05 09:30:48 Map: 5 done vs. 3 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:48 Coordinator work
+2024/03/05 09:30:48 Coordinator status 0
+2024/03/05 09:30:48 Map: 5 done vs. 3 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:48 Coordiantor restart Map order 0
+2024/03/05 09:30:48 Coordiantor restart Map order 3
+2024/03/05 09:30:49 Coordinator work
+2024/03/05 09:30:49 Coordinator status 0
+2024/03/05 09:30:49 IsDone &{0 2024-03-05 09:30:49.065557999 +0800 CST m=+12.099603262 0xc00008a360} true
+2024/03/05 09:30:49 Order 0 finish Map
+2024/03/05 09:30:49 Coordiantor restart Map order 6
+2024/03/05 09:30:50 Coordinator work
+2024/03/05 09:30:50 Coordinator status 0
+2024/03/05 09:30:50 IsDone &{0 2024-03-05 09:30:50.073247301 +0800 CST m=+13.107292564 0xc00008a510} true
+2024/03/05 09:30:50 Order 3 finish Map
+2024/03/05 09:30:50 Coordinator work
+2024/03/05 09:30:50 Coordinator status 0
+2024/03/05 09:30:50 IsDone &{0 2024-03-05 09:30:50.116509948 +0800 CST m=+13.150555210 0xc00008a6c0} true
+2024/03/05 09:30:50 Order 6 finish Map
+2024/03/05 09:30:50 Coordinator work
+2024/03/05 09:30:50 Coordinator status 0
+2024/03/05 09:30:50 Map: 8 done vs. 0 working, Reduce 0 done vs. 0 working
+2024/03/05 09:30:50 forward: forward to Reuce Phase
+2024/03/05 09:30:50 making reduce order : 8
+2024/03/05 09:30:50 making reduce order : 9
+2024/03/05 09:30:50 making reduce order : 10
+2024/03/05 09:30:50 making reduce order : 11
+2024/03/05 09:30:50 making reduce order : 12
+2024/03/05 09:30:50 making reduce order : 13
+2024/03/05 09:30:50 making reduce order : 14
+2024/03/05 09:30:50 making reduce order : 15
+2024/03/05 09:30:50 making reduce order : 16
+2024/03/05 09:30:50 making reduce order : 17
+2024/03/05 09:30:50 done with make reduce order
+2024/03/05 09:30:50 Map: 8 done vs. 0 working, Reduce 0 done vs. 10 working
+2024/03/05 09:30:51 Coordinator work
+2024/03/05 09:30:51 Coordinator status 1
+2024/03/05 09:30:51 Coordinator work
+2024/03/05 09:30:51 Coordinator status 1
+2024/03/05 09:30:51 Order 9 finish Reduce
+2024/03/05 09:30:52 Order 8 finish Reduce
+2024/03/05 09:30:52 Coordinator work
+2024/03/05 09:30:52 Coordinator status 1
+2024/03/05 09:30:52 Coordinator work
+2024/03/05 09:30:52 Coordinator status 1
+2024/03/05 09:30:52 Order 11 finish Reduce
+2024/03/05 09:30:53 Coordinator work
+2024/03/05 09:30:53 Coordinator status 1
+2024/03/05 09:30:53 Order 12 finish Reduce
+2024/03/05 09:30:53 Coordinator work
+2024/03/05 09:30:53 Coordinator status 1
+2024/03/05 09:30:53 Coordinator work
+2024/03/05 09:30:53 Coordinator status 1
+2024/03/05 09:30:53 Order 14 finish Reduce
+2024/03/05 09:30:54 Coordinator work
+2024/03/05 09:30:54 Coordinator status 1
+2024/03/05 09:30:54 Order 15 finish Reduce
+2024/03/05 09:30:54 Coordinator work
+2024/03/05 09:30:54 Coordinator status 1
+2024/03/05 09:30:54 Order 16 finish Reduce
+2024/03/05 09:30:54 Coordinator work
+2024/03/05 09:30:54 Coordinator status 1
+2024/03/05 09:30:55 Coordinator work
+2024/03/05 09:30:55 Coordinator status 1
+2024/03/05 09:30:55 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:30:55 Coordinator work
+2024/03/05 09:30:55 Coordinator status 1
+2024/03/05 09:30:55 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:30:57 Coordinator work
+2024/03/05 09:30:57 Coordinator status 1
+2024/03/05 09:30:57 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:30:57 Coordinator work
+2024/03/05 09:30:57 Coordinator status 1
+2024/03/05 09:30:57 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:30:59 Coordinator work
+2024/03/05 09:30:59 Coordinator status 1
+2024/03/05 09:30:59 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:30:59 Coordinator work
+2024/03/05 09:30:59 Coordinator status 1
+2024/03/05 09:30:59 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:31:01 Coordinator work
+2024/03/05 09:31:01 Coordinator status 1
+2024/03/05 09:31:01 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:31:01 Coordinator work
+2024/03/05 09:31:01 Coordinator status 1
+2024/03/05 09:31:01 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:31:02 Coordiantor restart Reduce order 10
+2024/03/05 09:31:03 Coordinator work
+2024/03/05 09:31:03 Coordinator status 1
+2024/03/05 09:31:03 Coordinator work
+2024/03/05 09:31:03 Coordinator status 1
+2024/03/05 09:31:03 Map: 8 done vs. 0 working, Reduce 7 done vs. 3 working
+2024/03/05 09:31:03 Order 17 finish Reduce
+2024/03/05 09:31:03 Coordiantor restart Reduce order 13
+2024/03/05 09:31:04 Coordinator work
+2024/03/05 09:31:04 Coordinator status 1
+2024/03/05 09:31:04 Order 13 finish Reduce
+2024/03/05 09:31:04 Coordinator work
+2024/03/05 09:31:04 Coordinator status 1
+2024/03/05 09:31:04 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:05 Coordinator work
+2024/03/05 09:31:05 Coordinator status 1
+2024/03/05 09:31:05 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:05 Coordinator work
+2024/03/05 09:31:05 Coordinator status 1
+2024/03/05 09:31:05 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:06 Coordinator work
+2024/03/05 09:31:06 Coordinator status 1
+2024/03/05 09:31:06 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:07 Coordinator work
+2024/03/05 09:31:07 Coordinator status 1
+2024/03/05 09:31:07 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:07 Coordinator work
+2024/03/05 09:31:07 Coordinator status 1
+2024/03/05 09:31:07 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:08 Coordinator work
+2024/03/05 09:31:08 Coordinator status 1
+2024/03/05 09:31:08 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:09 Coordinator work
+2024/03/05 09:31:09 Coordinator status 1
+2024/03/05 09:31:09 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:09 Coordinator work
+2024/03/05 09:31:09 Coordinator status 1
+2024/03/05 09:31:09 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:10 Coordinator work
+2024/03/05 09:31:10 Coordinator status 1
+2024/03/05 09:31:10 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:11 Coordinator work
+2024/03/05 09:31:11 Coordinator status 1
+2024/03/05 09:31:11 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:11 Coordinator work
+2024/03/05 09:31:11 Coordinator status 1
+2024/03/05 09:31:11 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:12 Coordinator work
+2024/03/05 09:31:12 Coordinator status 1
+2024/03/05 09:31:12 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:13 Coordinator work
+2024/03/05 09:31:13 Coordinator status 1
+2024/03/05 09:31:13 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:13 Coordinator work
+2024/03/05 09:31:13 Coordinator status 1
+2024/03/05 09:31:13 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:13 Coordiantor restart Reduce order 10
+2024/03/05 09:31:14 Coordinator work
+2024/03/05 09:31:14 Coordinator status 1
+2024/03/05 09:31:15 Coordinator work
+2024/03/05 09:31:15 Coordinator status 1
+2024/03/05 09:31:15 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:15 Coordinator work
+2024/03/05 09:31:15 Coordinator status 1
+2024/03/05 09:31:15 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:15 Coordinator work
+2024/03/05 09:31:15 Coordinator status 1
+2024/03/05 09:31:15 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:17 Coordinator work
+2024/03/05 09:31:17 Coordinator status 1
+2024/03/05 09:31:17 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:17 Coordinator work
+2024/03/05 09:31:17 Coordinator status 1
+2024/03/05 09:31:17 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:17 Coordinator work
+2024/03/05 09:31:17 Coordinator status 1
+2024/03/05 09:31:17 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:19 Coordinator work
+2024/03/05 09:31:19 Coordinator status 1
+2024/03/05 09:31:19 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:19 Coordinator work
+2024/03/05 09:31:19 Coordinator status 1
+2024/03/05 09:31:19 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:19 Coordinator work
+2024/03/05 09:31:19 Coordinator status 1
+2024/03/05 09:31:19 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:21 Coordinator work
+2024/03/05 09:31:21 Coordinator status 1
+2024/03/05 09:31:21 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:21 Coordinator work
+2024/03/05 09:31:21 Coordinator status 1
+2024/03/05 09:31:21 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:21 Coordinator work
+2024/03/05 09:31:21 Coordinator status 1
+2024/03/05 09:31:21 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:23 Coordinator work
+2024/03/05 09:31:23 Coordinator status 1
+2024/03/05 09:31:23 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:23 Coordinator work
+2024/03/05 09:31:23 Coordinator status 1
+2024/03/05 09:31:23 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:23 Coordinator work
+2024/03/05 09:31:23 Coordinator status 1
+2024/03/05 09:31:23 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:24 Coordiantor restart Reduce order 10
+2024/03/05 09:31:25 Coordinator work
+2024/03/05 09:31:25 Coordinator status 1
+2024/03/05 09:31:25 Coordinator work
+2024/03/05 09:31:25 Coordinator status 1
+2024/03/05 09:31:25 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:25 Coordinator work
+2024/03/05 09:31:25 Coordinator status 1
+2024/03/05 09:31:25 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:27 Coordinator work
+2024/03/05 09:31:27 Coordinator status 1
+2024/03/05 09:31:27 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:27 Coordinator work
+2024/03/05 09:31:27 Coordinator status 1
+2024/03/05 09:31:27 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:29 Coordinator work
+2024/03/05 09:31:29 Coordinator status 1
+2024/03/05 09:31:29 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:29 Coordinator work
+2024/03/05 09:31:29 Coordinator status 1
+2024/03/05 09:31:29 Map: 8 done vs. 0 working, Reduce 9 done vs. 1 working
+2024/03/05 09:31:29 Order 10 finish Reduce
+2024/03/05 09:31:30 Coordinator work
+2024/03/05 09:31:30 Coordinator status 1
+2024/03/05 09:31:30 Map: 8 done vs. 0 working, Reduce 10 done vs. 0 working
+2024/03/05 09:31:30 forward: forward to done phase
+2024/03/05 09:31:31 Coordinator work
+2024/03/05 09:31:31 Coordinator status 2
+2024/03/05 09:31:31 Coordinator work
+2024/03/05 09:31:31 Coordinator status 2

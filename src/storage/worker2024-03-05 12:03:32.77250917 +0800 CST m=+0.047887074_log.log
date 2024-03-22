@@ -1,0 +1,16 @@
+2024/03/05 12:03:32 32 :  call for  1  times
+2024/03/05 12:03:32 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 12:03:32 worker  32 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0
+2024/03/05 12:03:39 start 2 map
+2024/03/05 12:03:39 Worker finish order 2, order type 0
+2024/03/05 12:03:40 32 :  call for  2  times
+2024/03/05 12:03:40 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:03:40 worker  32 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:03:40 32  waiting for order
+2024/03/05 12:03:42 32 :  call for  3  times
+2024/03/05 12:03:42 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 12:03:42 worker  32 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 12:03:42 32  waiting for order
+2024/03/05 12:03:44 32 :  call for  4  times
+2024/03/05 12:03:44 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 12:03:44 worker  32 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0

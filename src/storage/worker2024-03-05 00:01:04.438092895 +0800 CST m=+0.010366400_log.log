@@ -1,0 +1,23 @@
+2024/03/05 00:01:04 4 :  call for  1  times
+2024/03/05 00:01:04 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:01:04 worker  4 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:01:04 4  waiting for order
+2024/03/05 00:01:06 4 :  call for  2  times
+2024/03/05 00:01:06 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:01:06 worker  4 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:01:06 4  waiting for order
+2024/03/05 00:01:08 4 :  call for  3  times
+2024/03/05 00:01:08 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:01:08 worker  4 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:01:08 4  waiting for order
+2024/03/05 00:01:10 4 :  call for  4  times
+2024/03/05 00:01:10 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:01:10 worker  4 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:01:10 4  waiting for order
+2024/03/05 00:01:12 4 :  call for  5  times
+2024/03/05 00:01:12 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:01:12 worker  4 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:01:12 4  waiting for order
+2024/03/05 00:01:14 4 :  call for  6  times
+2024/03/05 00:01:14 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 00:01:14 worker  4 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0

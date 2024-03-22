@@ -1,0 +1,62 @@
+2024/03/05 00:17:21 21 :  call for  1  times
+2024/03/05 00:17:21 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:21 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:21 21  waiting for order
+2024/03/05 00:17:23 21 :  call for  2  times
+2024/03/05 00:17:23 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:23 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:23 21  waiting for order
+2024/03/05 00:17:25 21 :  call for  3  times
+2024/03/05 00:17:25 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:25 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:25 21  waiting for order
+2024/03/05 00:17:27 21 :  call for  4  times
+2024/03/05 00:17:27 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:27 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:27 21  waiting for order
+2024/03/05 00:17:29 21 :  call for  5  times
+2024/03/05 00:17:29 CallOrder: worker get response &{0 [../pg-frankenstein.txt] 2 10}
+2024/03/05 00:17:29 worker  21 get order:  &{0 [../pg-frankenstein.txt] 2 10}  order Type 0
+2024/03/05 00:17:29 start 2 map
+2024/03/05 00:17:29 Worker finish order 2, order type 0
+2024/03/05 00:17:30 21 :  call for  6  times
+2024/03/05 00:17:30 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 00:17:30 worker  21 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 00:17:38 start 4 map
+2024/03/05 00:17:38 Worker finish order 4, order type 0
+2024/03/05 00:17:39 21 :  call for  7  times
+2024/03/05 00:17:39 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:39 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:39 21  waiting for order
+2024/03/05 00:17:41 21 :  call for  8  times
+2024/03/05 00:17:41 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:41 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:41 21  waiting for order
+2024/03/05 00:17:43 21 :  call for  9  times
+2024/03/05 00:17:43 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:43 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:43 21  waiting for order
+2024/03/05 00:17:45 21 :  call for  10  times
+2024/03/05 00:17:45 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:45 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:45 21  waiting for order
+2024/03/05 00:17:47 21 :  call for  11  times
+2024/03/05 00:17:47 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:47 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:47 21  waiting for order
+2024/03/05 00:17:49 21 :  call for  12  times
+2024/03/05 00:17:49 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:49 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:49 21  waiting for order
+2024/03/05 00:17:51 21 :  call for  13  times
+2024/03/05 00:17:51 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 00:17:51 worker  21 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 00:17:51 21  waiting for order
+2024/03/05 00:17:53 21 :  call for  14  times
+2024/03/05 00:17:53 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 00:17:53 worker  21 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
+2024/03/05 00:17:55 start 8 map
+2024/03/05 00:17:55 Worker finish order 8, order type 1
+2024/03/05 00:17:56 21 :  call for  15  times
+2024/03/05 00:17:56 CallOrder: worker get response &{1 [mr-tmp-0-5 mr-tmp-1-5 mr-tmp-2-5 mr-tmp-3-5 mr-tmp-4-5 mr-tmp-5-5 mr-tmp-6-5 mr-tmp-7-5] 13 0}
+2024/03/05 00:17:56 worker  21 get order:  &{1 [mr-tmp-0-5 mr-tmp-1-5 mr-tmp-2-5 mr-tmp-3-5 mr-tmp-4-5 mr-tmp-5-5 mr-tmp-6-5 mr-tmp-7-5] 13 0}  order Type 1

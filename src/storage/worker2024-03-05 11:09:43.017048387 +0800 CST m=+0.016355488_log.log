@@ -1,0 +1,40 @@
+2024/03/05 11:09:43 43 :  call for  1  times
+2024/03/05 11:09:43 CallOrder: worker get response &{0 [../pg-being_ernest.txt] 0 10}
+2024/03/05 11:09:43 worker  43 get order:  &{0 [../pg-being_ernest.txt] 0 10}  order Type 0
+2024/03/05 11:09:43 start 0 map
+2024/03/05 11:09:43 Worker finish order 0, order type 0
+2024/03/05 11:09:44 43 :  call for  2  times
+2024/03/05 11:09:44 CallOrder: worker get response &{0 [../pg-huckleberry_finn.txt] 4 10}
+2024/03/05 11:09:44 worker  43 get order:  &{0 [../pg-huckleberry_finn.txt] 4 10}  order Type 0
+2024/03/05 11:09:44 start 4 map
+2024/03/05 11:09:44 Worker finish order 4, order type 0
+2024/03/05 11:09:45 43 :  call for  3  times
+2024/03/05 11:09:45 CallOrder: worker get response &{0 [../pg-metamorphosis.txt] 5 10}
+2024/03/05 11:09:45 worker  43 get order:  &{0 [../pg-metamorphosis.txt] 5 10}  order Type 0
+2024/03/05 11:09:45 start 5 map
+2024/03/05 11:09:45 Worker finish order 5, order type 0
+2024/03/05 11:09:46 43 :  call for  4  times
+2024/03/05 11:09:46 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 11:09:46 worker  43 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 11:09:46 start 6 map
+2024/03/05 11:09:46 Worker finish order 6, order type 0
+2024/03/05 11:09:47 43 :  call for  5  times
+2024/03/05 11:09:47 CallOrder: worker get response &{0 [../pg-tom_sawyer.txt] 7 10}
+2024/03/05 11:09:47 worker  43 get order:  &{0 [../pg-tom_sawyer.txt] 7 10}  order Type 0
+2024/03/05 11:09:47 start 7 map
+2024/03/05 11:09:47 Worker finish order 7, order type 0
+2024/03/05 11:09:48 43 :  call for  6  times
+2024/03/05 11:09:48 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:09:48 worker  43 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:09:48 43  waiting for order
+2024/03/05 11:09:50 43 :  call for  7  times
+2024/03/05 11:09:50 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:09:50 worker  43 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:09:50 43  waiting for order
+2024/03/05 11:09:52 43 :  call for  8  times
+2024/03/05 11:09:52 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:09:52 worker  43 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:09:52 43  waiting for order
+2024/03/05 11:09:54 43 :  call for  9  times
+2024/03/05 11:09:54 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 11:09:54 worker  43 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0

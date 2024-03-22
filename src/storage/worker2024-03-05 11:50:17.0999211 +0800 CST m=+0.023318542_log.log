@@ -1,0 +1,33 @@
+2024/03/05 11:50:17 17 :  call for  1  times
+2024/03/05 11:50:17 CallOrder: worker get response &{0 [../pg-dorian_gray.txt] 1 10}
+2024/03/05 11:50:17 worker  17 get order:  &{0 [../pg-dorian_gray.txt] 1 10}  order Type 0
+2024/03/05 11:50:17 start 1 map
+2024/03/05 11:50:17 Worker finish order 1, order type 0
+2024/03/05 11:50:18 17 :  call for  2  times
+2024/03/05 11:50:18 CallOrder: worker get response &{0 [../pg-sherlock_holmes.txt] 6 10}
+2024/03/05 11:50:18 worker  17 get order:  &{0 [../pg-sherlock_holmes.txt] 6 10}  order Type 0
+2024/03/05 11:50:23 start 6 map
+2024/03/05 11:50:23 Worker finish order 6, order type 0
+2024/03/05 11:50:24 17 :  call for  3  times
+2024/03/05 11:50:24 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:50:24 worker  17 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:50:24 17  waiting for order
+2024/03/05 11:50:26 17 :  call for  4  times
+2024/03/05 11:50:26 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:50:26 worker  17 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:50:26 17  waiting for order
+2024/03/05 11:50:28 17 :  call for  5  times
+2024/03/05 11:50:28 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:50:28 worker  17 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:50:28 17  waiting for order
+2024/03/05 11:50:30 17 :  call for  6  times
+2024/03/05 11:50:30 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:50:30 worker  17 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:50:30 17  waiting for order
+2024/03/05 11:50:32 17 :  call for  7  times
+2024/03/05 11:50:32 CallOrder: worker get response &{2 [] 0 0}
+2024/03/05 11:50:32 worker  17 get order:  &{2 [] 0 0}  order Type 2
+2024/03/05 11:50:32 17  waiting for order
+2024/03/05 11:50:34 17 :  call for  8  times
+2024/03/05 11:50:34 CallOrder: worker get response &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}
+2024/03/05 11:50:34 worker  17 get order:  &{1 [mr-tmp-0-0 mr-tmp-1-0 mr-tmp-2-0 mr-tmp-3-0 mr-tmp-4-0 mr-tmp-5-0 mr-tmp-6-0 mr-tmp-7-0] 8 0}  order Type 1
