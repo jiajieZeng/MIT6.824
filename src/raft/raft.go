@@ -73,8 +73,8 @@ type Raft struct {
 
 	// 2A
 	state        State
-	heartBeat    *time.Timer
-	electionTime *time.Timer
+	heartBeat    time.Time
+	electionTime time.Time
 	// Persistente state on all servers
 	currentTerm int // latest term server has seen(initialized to 0 on first boot, increases monotonically)
 	voteFor     int // candidateId that received vote in current term (or null if none)
@@ -240,7 +240,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	if rf.currentTerm < args.Term {
 		rf.stateTrans(Follower)
 		rf.currentTerm = args.Term
-		rf.electionTime.Reset(getElectionTime())
 		rf.voteFor = -1
 	}
 	if !rf.upToDate(args.Term, args.LastLogIndex) {
@@ -250,7 +249,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.mu.Unlock()
 		return
 	}
-	rf.electionTime.Reset(getElectionTime())
+	rf.electionTime = time.Now()
 	reply.Term = rf.currentTerm
 	reply.VoteGranted = true
 	rf.voteFor = args.CandidateId
@@ -302,7 +301,7 @@ func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *Ap
 // AppendEntries RPC handler
 func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply) {
 	rf.mu.Lock()
-	rf.electionTime.Reset(getElectionTime())
+	rf.electionTime = time.Now()
 	DPrintf("[before] server [%v] in state [%v] currentTerm[%v] voteFor[%v] get AppendEntries from server [%v]\n", rf.me, stateArray[rf.state], rf.currentTerm, rf.voteFor, args.LeaderId)
 	// reply false if term < currentTerm
 	if args.Term < rf.currentTerm {
@@ -379,6 +378,17 @@ func (rf *Raft) stateTrans(newState State) {
 	rf.state = newState
 }
 
+// 生成RequestVoteArgs，必须带着锁进入
+func (rf *Raft) genRequestVoteArgs() RequestVoteArgs {
+	logLen := len(rf.log)
+	args := RequestVoteArgs{}
+	args.Term = rf.currentTerm
+	args.CandidateId = rf.me
+	args.LastLogIndex = logLen - 1
+	args.LastLogTerm = rf.log[logLen-1]
+	return args
+}
+
 // 开始一次选举
 // 根据经验，我们发现最简单的做法是首先记录回复中的任期（它可能比你当前的任期更高），
 // 然后将当前任期与你在原始 RPC 中发送的任期进行比较。如果两者不同，则放弃回复并返回。
@@ -389,38 +399,32 @@ func (rf *Raft) startElection() {
 	rf.voteFor = rf.me       // 投票给自己
 	grantedVoteNum := 1      // 投票计数
 	DPrintf("server [%v] kick off election time out, now in state [%s], currentTerm [%v]\n", rf.me, stateArray[rf.state], rf.currentTerm)
-	logLen := len(rf.log)
-	args := new(RequestVoteArgs)
-	args.Term = rf.currentTerm
-	args.CandidateId = rf.me
-	args.LastLogIndex = logLen - 1
-	args.LastLogTerm = rf.log[logLen-1]
+	args := rf.genRequestVoteArgs()
 	for peer := range rf.peers { // 向所有的peer发送RequestVoteRPC
 		if peer == rf.me {
 			continue
 		}
 		go func(peer int) {
 			reply := RequestVoteReply{}
-			if !rf.sendRequestVote(peer, args, &reply) {
+			if !rf.sendRequestVote(peer, &args, &reply) {
 				return
 			}
 			rf.mu.Lock()
 			DPrintf("serve [%v] currentTerm[%v] state[%v] get reply [%v] from %v\n", rf.me, rf.currentTerm, stateArray[rf.state], reply, peer)
 			if rf.currentTerm == args.Term && rf.state == Candidate {
-				// 发现比自己高的任期
 				if reply.VoteGranted {
 					grantedVoteNum++
 					DPrintf("server [%v] currentTerm[%v] state[%v] get vote from server [%v] now votenum[%v]\n", rf.me, rf.currentTerm, stateArray[rf.state], peer, grantedVoteNum)
 					// 当选
 					if grantedVoteNum > len(rf.peers)/2 {
 						rf.stateTrans(Leader)
-						// DPrintf("server [%v] came into leader, now in state [%v], currentTerm [%v]\n", rf.me, stateArray[rf.state], rf.currentTerm)
+						DPrintf("server [%v] came into leader, now in state [%v], currentTerm [%v]\n", rf.me, stateArray[rf.state], rf.currentTerm)
 						// 7. leader会发送心跳给所有其他server来建立自己的权限，并防止再次选举。
 						args := rf.genAppendEntreisArgs()
-						rf.electionTime.Reset(getElectionTime())
-						go rf.broadcast(&args)
+						rf.broadcast(&args)
+						rf.electionTime = time.Now()
 					}
-				} else if reply.Term > rf.currentTerm {
+				} else if reply.Term > rf.currentTerm { // 发现比自己高的任期
 					// 转换为Follower
 					rf.stateTrans(Follower)
 					rf.currentTerm = reply.Term
@@ -475,39 +479,41 @@ func (rf *Raft) ticker() {
 	for !rf.killed() {
 		// Your code here to check if a leader election should
 		// be started and to randomize sleeping time using
-		select {
-		case <-rf.electionTime.C:
-			rf.mu.Lock()
-			rf.electionTime.Reset(getElectionTime())
-			// 试一下改成
-			if rf.state != Leader {
-				rf.startElection()
-			}
-			rf.mu.Unlock()
-		case <-rf.heartBeat.C:
-			rf.mu.Lock()
-			if rf.state == Leader {
-				rf.heartBeat.Reset(getHeartBeatTime())
+		rf.mu.Lock()
+		switch rf.state {
+		case Leader:
+			if rf.HeartBeatTimeOut() {
 				args := rf.genAppendEntreisArgs()
 				rf.broadcast(&args)
+				rf.heartBeat = time.Now()
 			}
-			rf.mu.Unlock()
+		case Follower:
+			fallthrough
+		case Candidate:
+			if rf.ElectionTimeOut() {
+				rf.electionTime = time.Now()
+				rf.startElection()
+			}
 		}
-		// time.Sleep(time.Second)
+		rf.mu.Unlock()
+		time.Sleep(50 * time.Millisecond)
 	}
 }
 
-// 随机的选举超时
-func getElectionTime() time.Duration {
+// ElectionTimeOut 随机选举超时
+func (rf *Raft) ElectionTimeOut() bool {
 	rand.Seed(time.Now().UnixNano())
-	randomMilliseconds := 300 + rand.Intn(150)
+	randomMilliseconds := 300 + rand.Intn(150) // 随机生成 300 到 450 之间的毫秒数
 	randomDuration := time.Duration(randomMilliseconds) * time.Millisecond
-	return randomDuration
+	passedTime := time.Since(rf.electionTime)
+	return passedTime > randomDuration
 }
 
 // 心跳时间
-func getHeartBeatTime() time.Duration {
-	return time.Duration(100) * time.Millisecond
+func (rf *Raft) HeartBeatTimeOut() bool {
+	duration := time.Duration(100) * time.Microsecond
+	passedTime := time.Since(rf.heartBeat)
+	return passedTime > duration
 }
 
 // 获取最后一个日志
@@ -546,8 +552,8 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.matchIndex = make([]int, len(peers))
 	rf.log = make([]LogEntry, 1)
 	rf.applyCh = applyCh
-	rf.electionTime = time.NewTimer(getElectionTime())
-	rf.heartBeat = time.NewTimer(getHeartBeatTime())
+	rf.electionTime = time.Now()
+	rf.heartBeat = time.Now()
 	rf.applyCond = sync.NewCond(&rf.mu)
 	lastEntry := rf.getLastLogEntry()
 	for i := 0; i < len(peers); i++ {
