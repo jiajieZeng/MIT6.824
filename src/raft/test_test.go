@@ -56,7 +56,7 @@ func TestInitialElection2A(t *testing.T) {
 
 	// there should still be a leader.
 	cfg.checkOneLeader()
-
+	time.Sleep(time.Second * 10)
 	cfg.end()
 }
 
@@ -104,13 +104,6 @@ func TestReElection2A(t *testing.T) {
 }
 
 func TestManyElections2A(t *testing.T) {
-	f, err := os.OpenFile("../storageraft/coordinator_log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
-	if err != nil {
-		panic(fmt.Sprintf("Failed to create log, %s", err.Error()))
-	}
-	defer func() {
-		f.Close()
-	}()
 	servers := 7
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
