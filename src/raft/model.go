@@ -11,5 +11,5 @@ const (
 type LogEntry struct {
 	Index        int // 索引
 	Command      interface{}
-	CommandIndex int
+	Term 		 int // 任期
 }
