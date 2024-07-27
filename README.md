@@ -10,4 +10,4 @@
 ## 2D
 完成
 ## 3A
-烂2核2G的服务器过不了TestSpeed，本地跑一下试试
+想不到还有Performance的测试，除了TestSpeed3A，都能过
