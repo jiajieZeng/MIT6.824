@@ -20,15 +20,28 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 	return
 }
 
+// 这个lab居然还有performance的要求
+
 
 type Op struct {
 	// Your definitions here.
 	// Field names must start with capital letters,
 	// otherwise RPC will break.
+	Key 		string	
+	Value 		string
+	OpType		string
+	SequenceNum	int
+	ClientId	int64
+}
+
+type OpResult struct {
+	SequenceNum		int 	
+	Value 			string
+	Err			Err
 }
 
 type KVServer struct {
-	mu      sync.Mutex
+	mu      sync.RWMutex
 	me      int
 	rf      *raft.Raft
 	applyCh chan raft.ApplyMsg
@@ -37,15 +50,185 @@ type KVServer struct {
 	maxraftstate int // snapshot if log grows this big
 
 	// Your definitions here.
+	lastApplied 	int
+	keyvValueService	map[string]string	// replicated state machine
+	/*
+		Each server’s state machine maintains a session for each client.
+		The session tracks the latest serial number processed for the client, along with the associated re
+		sponse. If a server receives a command whose serial number has already been executed, it responds
+		immediately without re-executing the request.
+	*/
+	session		map[int64]OpResult
+	opCh		map[int]chan OpResult
 }
 
-
-func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
-	// Your code here.
+func (kv *KVServer) getOpCh(index int) chan OpResult {
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+	ret, exist := kv.opCh[index]
+	if !exist {
+		kv.opCh[index] = make(chan OpResult, 1)
+		ret = kv.opCh[index]
+	}
+	return ret
 }
 
-func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
+func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 	// Your code here.
+	// 操作get
+	if kv.killed() {
+		DPrintf("[Server Get] server killed args [%v]", args)
+		reply.Err = ErrWrongLeader
+		return
+	}
+	raftMe := kv.rf.GetMe()
+	_, isLeader := kv.rf.GetState()
+	if isLeader == false {
+		DPrintf("[Server Get] server [%v] not leader [%v]", raftMe, args)
+		reply.Err = ErrWrongLeader
+		return
+	}
+	// 复制到log里面去
+	op := Op {
+		Key: args.Key,
+		OpType: GetOp,
+		SequenceNum: args.SequenceNum,
+		ClientId:	args.ClientId,
+	}
+	logIndex, _, _ := kv.rf.Start(op)
+	opCh := kv.getOpCh(logIndex)
+	timer := time.NewTicker(150 * time.Millisecond)
+	select {
+	case appliedOp := <- opCh:
+		reply.Value = appliedOp.Value
+		reply.Err = appliedOp.Err
+		DPrintf("[Server Get] server [%v] get reply [%v]", raftMe, reply)
+	case <- timer.C:
+		DPrintf("[Server Get] server [%v] timeout", raftMe)
+		reply.Err = ErrTimeOut
+	}
+	timer.Stop()
+	go func() {
+		kv.mu.Lock()
+		if len(kv.opCh[logIndex]) == 0 {
+			delete(kv.opCh, logIndex)
+		}
+		kv.mu.Unlock()
+	}()
+}
+
+func (kv *KVServer) isDuplicate(sequenceNum int, clientId int64) (bool, OpResult) {
+	lastResponse, exist := kv.session[clientId]
+	if exist && lastResponse.SequenceNum >= sequenceNum {
+		return true, lastResponse
+	}
+	return false, lastResponse
+}
+
+func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) {
+	// Your code here.
+	// 操作put
+	if kv.killed() {
+		reply.Err = ErrWrongLeader
+		return
+	}
+	kv.mu.RLock()
+	ok, lastResponse := kv.isDuplicate(args.SequenceNum, args.ClientId)
+	kv.mu.RUnlock()
+	if ok {
+		reply.Err = lastResponse.Err
+		return
+	}
+	_, isLeader := kv.rf.GetState()
+	if isLeader == false {
+		reply.Err = ErrWrongLeader
+		return
+	}
+	op := Op {
+		Key: args.Key,
+		Value: args.Value,
+		OpType: args.Op,
+		SequenceNum: args.SequenceNum,
+		ClientId:	args.ClientId,
+	}
+	logIndex, _, _ := kv.rf.Start(op)
+	opCh := kv.getOpCh(logIndex)
+	timer := time.NewTicker(150 * time.Millisecond)
+	select {
+	case appliedOp := <- opCh:
+		reply.Err = appliedOp.Err
+	case <- timer.C:
+		reply.Err = ErrTimeOut
+	}
+	timer.Stop()
+	go func() {
+		kv.mu.Lock()
+		if len(kv.opCh[logIndex]) == 0 {
+			delete(kv.opCh, logIndex)
+		}
+		kv.mu.Unlock()
+	}()
+}
+
+func (kv *KVServer) applyMessage() {
+	raftMe := kv.rf.GetMe()
+	for !kv.killed() {
+		select {
+		case msg := <- kv.applyCh:
+			
+			if msg.SnapshotValid {
+
+			} else {
+				kv.mu.Lock()
+				logIndex := msg.CommandIndex
+				if logIndex <= kv.lastApplied {
+					kv.mu.Unlock()
+					continue
+				}
+				kv.lastApplied = msg.CommandIndex
+				op := msg.Command.(Op)
+				DPrintf("[Server apply message] [%v] apply op [%v]", raftMe, op)
+				var ret OpResult
+				if op.OpType == GetOp {
+					value, exist := kv.keyvValueService[op.Key]
+					if exist {
+						ret = OpResult {
+							SequenceNum: op.SequenceNum,
+							Value:	value,
+							Err:	OK,
+						}
+					} else {
+						ret = OpResult {
+							SequenceNum: op.SequenceNum,
+							Value:	"",
+							Err:	ErrNoKey,
+						}
+					}
+				} else {
+					ok, _ := kv.isDuplicate(op.SequenceNum, op.ClientId)
+					if !ok {
+						if op.OpType == PutOp {
+							kv.keyvValueService[op.Key] = op.Value
+						} else if op.OpType == AppendOp {
+							kv.keyvValueService[op.Key] += op.Value
+						}
+						kv.session[op.ClientId] = OpResult {
+							SequenceNum:	op.SequenceNum, 
+							Value:			kv.keyvValueService[op.Key], 
+							Err: 			OK,
+						}	
+					}
+					ret = kv.session[op.ClientId]
+				}
+				kv.mu.Unlock()
+				term, isLeader := kv.rf.GetState()
+				if isLeader && msg.CommandTerm == term {
+					ch := kv.getOpCh(logIndex) 
+					ch <- ret	
+				}
+			}
+		}
+	}
 }
 
 //
@@ -98,6 +281,10 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
 
 	// You may need initialization code here.
-
+	kv.lastApplied = 0
+	kv.keyvValueService = make(map[string]string)
+	kv.session = make(map[int64]OpResult)
+	kv.opCh = make(map[int]chan OpResult)
+	go kv.applyMessage()
 	return kv
 }

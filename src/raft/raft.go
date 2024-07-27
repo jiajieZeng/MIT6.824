@@ -49,6 +49,7 @@ type ApplyMsg struct {
 	CommandValid bool
 	Command      interface{}
 	CommandIndex int
+	CommandTerm	 int
 
 	// For 2D:
 	SnapshotValid bool
@@ -106,6 +107,10 @@ type Raft struct {
 	snapshot 			[]byte
 }
 
+func (rf *Raft) GetMe() int {
+	return rf.me
+}
+
 // return currentTerm and whether this server
 // believes it is the leader.
 func (rf *Raft) GetState() (int, bool) {
@@ -116,7 +121,10 @@ func (rf *Raft) GetState() (int, bool) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	term = rf.currentTerm
-	isleader = (rf.state == Leader)
+	isleader = false
+	if rf.state == Leader {
+		isleader = true
+	}
 	return term, isleader
 }
 
@@ -993,6 +1001,7 @@ func (rf *Raft) applyMessage() {
 			CommandValid: true,
 			Command: rf.getLogEntry(i).Command,
 			CommandIndex: i,
+			CommandTerm: rf.getLogEntry(i).Term,
 		}
 		DPrintf("Server [%v] apply index [%v] entry\n", rf.me, i)
 		rf.lastApplied = i
@@ -1096,7 +1105,7 @@ func (rf *Raft) ElectionTimeOut() bool {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	rand.Seed(time.Now().UnixNano())
-	randomMilliseconds := 300 + rand.Intn(200) // 随机生成 300 到 500 之间的毫秒数
+	randomMilliseconds := 200 + rand.Intn(200) // 随机生成 300 到 450 之间的毫秒数
 	randomDuration := time.Duration(randomMilliseconds) * time.Millisecond
 	passedTime := time.Since(rf.electionTime)
 	flag := passedTime > randomDuration 
@@ -1110,7 +1119,7 @@ func (rf *Raft) ElectionTimeOut() bool {
 func (rf *Raft) HeartBeatTimeOut() bool {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	duration := time.Duration(100) * time.Millisecond
+	duration := time.Duration(60) * time.Millisecond
 	passedTime := time.Since(rf.heartBeat)
 	flag := passedTime > duration
 	// if flag {
