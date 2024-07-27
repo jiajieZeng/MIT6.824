@@ -6,8 +6,11 @@ import "math/big"
 
 
 type Clerk struct {
-	servers []*labrpc.ClientEnd
+	servers 	[]*labrpc.ClientEnd
 	// You will have to modify this struct.
+	clientId 	int64				// To implement this, each client is given a unique identifier
+	sequenceNum 	int				// and clients assign unique serial numbers to every command. 
+	leaderId	int				// leader in the cluster
 }
 
 func nrand() int64 {
@@ -21,6 +24,10 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck := new(Clerk)
 	ck.servers = servers
 	// You'll have to add code here.
+	// 论文应该是发送一个registerRPC来初始化clientId
+	ck.leaderId = 0	// 这个可以随机，那就初始化为0算了
+	ck.clientId = nrand()
+	ck.sequenceNum = 0		// 自增ID
 	return ck
 }
 
@@ -37,7 +44,32 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 // arguments. and reply must be passed as a pointer.
 //
 func (ck *Clerk) Get(key string) string {
-
+	args := GetArgs {
+		Key: 			key,
+		SequenceNum: 	ck.sequenceNum,
+		ClientId:		ck.clientId,
+	}
+	ck.sequenceNum++
+	for {
+		reply := GetReply{}
+		ok := ck.servers[ck.leaderId].Call("KVServer.ServerGet", &args, &reply)
+		if ok {
+			if reply.Err == OK {
+				DPrintf("[Client Get] Client [%v] send Get to leader [%v] OK value [%v]", ck.clientId, ck.leaderId, reply.Value)
+				return reply.Value
+			} else if reply.Err == ErrNoKey {
+				DPrintf("[Client Get] Client [%v] send Get to leader [%v] ErrNoKey", ck.clientId, ck.leaderId)
+				return ""
+			} else {
+				DPrintf("[Client Get] Client [%v] send Get to leader [%v] Err [%v]", ck.clientId, ck.leaderId, reply.Err)
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+			}
+		} else {
+			newLeaderId := (ck.leaderId + 1) % len(ck.servers)
+			DPrintf("[Client Get] Client [%v] failed to send Get to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
+			ck.leaderId = newLeaderId
+		}
+	}
 	// You will have to modify this function.
 	return ""
 }
@@ -53,12 +85,39 @@ func (ck *Clerk) Get(key string) string {
 // arguments. and reply must be passed as a pointer.
 //
 func (ck *Clerk) PutAppend(key string, value string, op string) {
+	// 感觉put和get的代码是一样的，不过为了打印一下日志，还是分开写
 	// You will have to modify this function.
+	args := PutAppendArgs {
+		Key: 			key,
+		Value: 			value,
+		Op:				op,
+		ClientId:		ck.clientId,
+		SequenceNum:	ck.sequenceNum,
+	}
+	ck.sequenceNum++
+	DPrintf("[Client PutAppend] Client [%v] gen op id [%v] Key [%v] Value [%v] Op [%v]", 
+			ck.clientId, args.SequenceNum, args.Key, args.Value, args.Op)
+	for {
+		reply := PutAppendReply{}
+		ok := ck.servers[ck.leaderId].Call("KVServer.ServerPutAppend", &args, &reply)
+		if ok {
+			if reply.Err == OK {
+				DPrintf("[Client PutAppend] Client [%v] send PutAppend to leader [%v] OK", ck.clientId, ck.leaderId)
+				return
+			} else {
+				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
+			}
+		} else {
+			newLeaderId := (ck.leaderId + 1) % len(ck.servers)
+			DPrintf("[Client PutAppend] Client [%v] failed to send PutAppend to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
+			ck.leaderId = newLeaderId
+		}
+	}
 }
 
 func (ck *Clerk) Put(key string, value string) {
-	ck.PutAppend(key, value, "Put")
+	ck.PutAppend(key, value, "PutOp")
 }
 func (ck *Clerk) Append(key string, value string) {
-	ck.PutAppend(key, value, "Append")
+	ck.PutAppend(key, value, "AppendOp")
 }
