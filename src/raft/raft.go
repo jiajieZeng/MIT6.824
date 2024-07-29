@@ -193,7 +193,6 @@ func (rf *Raft) readPersist(data []byte) {
 		if rf.lastIncludedIndex > rf.lastApplied {
 			rf.lastApplied = rf.lastIncludedIndex
 		}
-		// rf.persist()	// ?
 		DPrintf("[readPersist] Server [%v] Decode success currentTerm [%v], votedFor [%v], log's length [%v]",
 				rf.me, rf.currentTerm, rf.votedFor, len(rf.log))
 		rf.mu.Unlock()
@@ -273,7 +272,6 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 	rf.persist()
 	DPrintf("[CondInstallSnapshot] Server [%v] currentTerm [%v] install snapshot lastIncludedTerm [%v] lastIncludedIndex [%v] firstLogIndex [%v] firstLogTerm [%v]", 
 			rf.me, rf.currentTerm, lastIncludedTerm, lastIncludedIndex, rf.getFirstLogEntry().Index, rf.getFirstLogEntry().Term)
-	rf.persist()
 	return true
 }
 
@@ -528,10 +526,11 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 				break
 			} else if rf.getLogEntry(index).Term != entry.Term {
 				// 从这个位置开始覆盖
-				idx := 0
-				for rf.log[idx].Index != index {
-					idx++
-				}
+				// idx := 0
+				// for rf.log[idx].Index != index {
+				// 	idx++
+				// }
+				idx := index - rf.getFirstLogEntry().Index
 				DPrintf("[AppendEntries inprogress] Server [%v] logs before append length [%v]\n", rf.me, len(rf.log))
 				// DPrintf("[inprogress] Server [%v] entry.Index[%v] firstIndex [%v]", rf.me, entry.Index, firstIndex)
 				log := append(rf.log[:idx], args.Entries[i:]...)
@@ -558,13 +557,14 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 			}
 			rf.applyCond.Broadcast() // 唤醒aply的条件变量
 		}
-		DPrintf("[AppendEntries after4] Server [%v] in state [%v] currentTerm [%v] votedFor [%v] get AppendEntries from Server [%v] success\n", rf.me, stateArray[rf.state], rf.currentTerm, rf.votedFor, args.LeaderId)
+		// DPrintf("[AppendEntries after4] Server [%v] in state [%v] currentTerm [%v] votedFor [%v] get AppendEntries from Server [%v] success\n", rf.me, stateArray[rf.state], rf.currentTerm, rf.votedFor, args.LeaderId)
 	} else {
-		DPrintf("[AppendEntries after5] rf.getLogEntry(args.PrevLogIndex).Term [%v], args.PrevLogTerm [%v]",
-				rf.getLogEntry(args.PrevLogIndex).Term, args.PrevLogTerm)
+		// DPrintf("[AppendEntries after5] rf.getLogEntry(args.PrevLogIndex).Term [%v], args.PrevLogTerm [%v]",
+		// 		rf.getLogEntry(args.PrevLogIndex).Term, args.PrevLogTerm)
 		// reply false if log doesn't contain an entry at preveLogIndex whose term matches prevLogTerm
 		index := args.PrevLogIndex
-		for index >= rf.getFirstLogEntry().Index && rf.getLogEntry(index).Term == rf.getLogEntry(args.PrevLogIndex).Term {
+		prevEntry := rf.getLogEntry(args.PrevLogIndex)
+		for index >= rf.getFirstLogEntry().Index && rf.getLogEntry(index).Term == prevEntry.Term {
 			index--
 		}
 		reply.Term = rf.currentTerm
@@ -601,12 +601,17 @@ func (rf *Raft) getFirstLogEntry() LogEntry {
 }
 
 func (rf *Raft) getLogEntry(index int) LogEntry {
-	for i := 0; i < len(rf.log); i++ {
-		if rf.log[i].Index == index {
-			return rf.log[i]
-		}
+	idx := index - rf.getFirstLogEntry().Index
+	if idx >= len(rf.log) || idx < 0 {
+		return LogEntry{}
 	}
-	return LogEntry{}
+	return rf.log[idx]
+	// for i := 0; i < len(rf.log); i++ {
+	// 	if rf.log[i].Index == index {
+	// 		return rf.log[i]
+	// 	}
+	// }
+	// return LogEntry{}
 }
 
 func (rf *Raft) AppendLogEntries(command interface{}) LogEntry {
@@ -651,7 +656,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	DPrintf("Server %v receives a new command to replicate in term %v now log's length %v", rf.me, rf.currentTerm, len(rf.log))
 	index = newEntry.Index
 	term = rf.currentTerm
-	go rf.broadcast(false)
+	rf.broadcast(false)
 	// 制作一个AppendEntrisRPC
 	return index, term, isLeader
 }
@@ -839,10 +844,10 @@ func (rf *Raft) replicate(peer int, heartBeat bool) {
 		DPrintf("Server [%v] send InstallSnapshotRPC to Server [%v] with snapshot begin {heartBeat[%v]}", rf.me, peer, heartBeat)
 		rf.mu.Unlock()
 		if rf.sendInstallSnapshot(peer, &args, &reply) {
-			rf.mu.Lock()
-			DPrintf("Server [%v] currentTerm [%v] sending InstallSnapshotRPC to Server [%v] success {heartBeat[%v]}", 
-					rf.me, rf.currentTerm, peer, heartBeat)
-			rf.mu.Unlock()
+			// rf.mu.Lock()
+			// DPrintf("Server [%v] currentTerm [%v] sending InstallSnapshotRPC to Server [%v] success {heartBeat[%v]}", 
+			// 		rf.me, rf.currentTerm, peer, heartBeat)
+			// rf.mu.Unlock()
 			rf.handleInstallSnapshotReply(peer, args, reply)
 		}
 	} else {
@@ -854,16 +859,16 @@ func (rf *Raft) replicate(peer int, heartBeat bool) {
 		rf.mu.Unlock()
 		// 发送RPC的时候不可以带着锁
 		if rf.sendAppendEntries(peer, &args, &reply) {
-			rf.mu.Lock()
-			DPrintf("Server [%v] currentTerm [%v] sending AppendEntrisRPC to Server [%v] success {heartBeat[%v]}", 
-					rf.me, rf.currentTerm, peer, heartBeat)
-			rf.mu.Unlock()
+			// rf.mu.Lock()
+			// DPrintf("Server [%v] currentTerm [%v] sending AppendEntrisRPC to Server [%v] success {heartBeat[%v]}", 
+			// 		rf.me, rf.currentTerm, peer, heartBeat)
+			// rf.mu.Unlock()
 			rf.handleAppendEntrisReply(peer, args, reply)
 		} else {
-			rf.mu.Lock()
-			DPrintf("Server [%v] currentTerm [%v] failed to send AppendEntrisRPC to Server [%v] {heartBeat[%v]}", 
-					rf.me, rf.currentTerm, peer, heartBeat)
-			rf.mu.Unlock()
+			// rf.mu.Lock()
+			// DPrintf("Server [%v] currentTerm [%v] failed to send AppendEntrisRPC to Server [%v] {heartBeat[%v]}", 
+			// 		rf.me, rf.currentTerm, peer, heartBeat)
+			// rf.mu.Unlock()
 		}
 	}
 }
@@ -939,7 +944,8 @@ func (rf *Raft) handleAppendEntrisReply(peer int, args AppendEntriesArgs, reply 
 	} else {
 		// 回退一段log，减少RPC的发送数量
 		index := reply.ConflictIndex
-		for index >= rf.getFirstLogEntry().Index && rf.getLogEntry(index).Term == rf.getLogEntry(reply.ConflictIndex).Term {
+		conflictEntry := rf.getLogEntry(reply.ConflictIndex)
+		for index >= rf.getFirstLogEntry().Index && rf.getLogEntry(index).Term == conflictEntry.Term {
 			index--
 		}
 		rf.nextIndex[peer] = index + 1
@@ -986,6 +992,33 @@ func (rf *Raft) commitLog(index int) {
 	} 
 }
 
+// func (rf *Raft) applyMessage() {
+// 	for !rf.killed() {
+// 		rf.mu.Lock()
+// 		for rf.lastApplied >= rf.commitIndex {
+// 			rf.applyCond.Wait()
+// 		}
+// 		firstIndex, commitIndex, lastApplied := rf.getFirstLogEntry().Index, rf.commitIndex, rf.lastApplied
+// 		entries := make([]LogEntry, commitIndex - lastApplied)
+// 		copy(entries, rf.log[lastApplied + 1 - firstIndex: commitIndex + 1 - firstIndex])
+// 		rf.mu.Unlock()
+// 		for _, entry := range entries {
+// 			rf.applyCh <- ApplyMsg {
+// 				CommandValid: true,
+// 				Command: entry.Command,
+// 				CommandIndex: entry.Index,
+// 				CommandTerm: entry.Term,
+// 			}
+// 		}
+// 		rf.mu.Lock()
+// 		DPrintf("Server [%v] apply [%v, [%v]", rf.me, rf.lastApplied, commitIndex)
+// 		if commitIndex > rf.lastApplied {
+// 			rf.lastApplied = commitIndex
+// 		}
+// 		rf.mu.Unlock()
+// 	}
+// }
+
 func (rf *Raft) applyMessage() {
 	for !rf.killed() {
 		rf.mu.Lock()
@@ -997,11 +1030,12 @@ func (rf *Raft) applyMessage() {
 			DPrintf("Server [%v] apply try to index [%v] < rf.getFirstLogEntry().Index [%v]\n", rf.me, i, rf.getFirstLogEntry().Index)
 			panic("index < firstIndex")
 		}
+		entry := rf.getLogEntry(i)
 		msg := ApplyMsg {
 			CommandValid: true,
-			Command: rf.getLogEntry(i).Command,
+			Command: entry.Command,
 			CommandIndex: i,
-			CommandTerm: rf.getLogEntry(i).Term,
+			CommandTerm: entry.Term,
 		}
 		DPrintf("Server [%v] apply index [%v] entry\n", rf.me, i)
 		rf.lastApplied = i
@@ -1057,7 +1091,8 @@ func (rf *Raft) genAppendEntriesArgs(index int) AppendEntriesArgs {
 		}
 		// 应该是？Index之后的log都发过去
 		if rf.log[i].Index > index /*&& rf.log[i].Term == rf.currentTerm */{
-			entries = append(entries, rf.log[i])
+			entries = append(entries, rf.log[i:]...)
+			break
 		}
 	}
 	args := AppendEntriesArgs {
@@ -1096,7 +1131,7 @@ func (rf *Raft) ticker() {
 		}
 		// Your code here to check if a leader election should
 		// be started and to randomize sleeping time using
-		time.Sleep(50 * time.Millisecond)
+		time.Sleep(30 * time.Millisecond)
 	}
 }
 
@@ -1119,7 +1154,7 @@ func (rf *Raft) ElectionTimeOut() bool {
 func (rf *Raft) HeartBeatTimeOut() bool {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	duration := time.Duration(60) * time.Millisecond
+	duration := time.Duration(100) * time.Millisecond
 	passedTime := time.Since(rf.heartBeat)
 	flag := passedTime > duration
 	// if flag {

@@ -81,13 +81,6 @@ func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 		reply.Err = ErrWrongLeader
 		return
 	}
-	raftMe := kv.rf.GetMe()
-	_, isLeader := kv.rf.GetState()
-	if isLeader == false {
-		DPrintf("[Server Get] server [%v] not leader [%v]", raftMe, args)
-		reply.Err = ErrWrongLeader
-		return
-	}
 	// 复制到log里面去
 	op := Op {
 		Key: args.Key,
@@ -95,16 +88,21 @@ func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 		SequenceNum: args.SequenceNum,
 		ClientId:	args.ClientId,
 	}
-	logIndex, _, _ := kv.rf.Start(op)
+	logIndex, _, isLeader := kv.rf.Start(op)
+	if isLeader == false {
+		DPrintf("[Server Get] server not leader [%v]", args)
+		reply.Err = ErrWrongLeader
+		return
+	}
 	opCh := kv.getOpCh(logIndex)
 	timer := time.NewTicker(150 * time.Millisecond)
 	select {
 	case appliedOp := <- opCh:
 		reply.Value = appliedOp.Value
 		reply.Err = appliedOp.Err
-		DPrintf("[Server Get] server [%v] get reply [%v]", raftMe, reply)
+		DPrintf("[Server Get] server get reply [%v]", reply)
 	case <- timer.C:
-		DPrintf("[Server Get] server [%v] timeout", raftMe)
+		DPrintf("[Server Get] server timeout")
 		reply.Err = ErrTimeOut
 	}
 	timer.Stop()
@@ -139,11 +137,6 @@ func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) 
 		reply.Err = lastResponse.Err
 		return
 	}
-	_, isLeader := kv.rf.GetState()
-	if isLeader == false {
-		reply.Err = ErrWrongLeader
-		return
-	}
 	op := Op {
 		Key: args.Key,
 		Value: args.Value,
@@ -151,7 +144,11 @@ func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) 
 		SequenceNum: args.SequenceNum,
 		ClientId:	args.ClientId,
 	}
-	logIndex, _, _ := kv.rf.Start(op)
+	logIndex, _, isLeader := kv.rf.Start(op)
+	if isLeader == false {
+		reply.Err = ErrWrongLeader
+		return
+	}
 	opCh := kv.getOpCh(logIndex)
 	timer := time.NewTicker(150 * time.Millisecond)
 	select {
@@ -171,7 +168,6 @@ func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) 
 }
 
 func (kv *KVServer) applyMessage() {
-	raftMe := kv.rf.GetMe()
 	for !kv.killed() {
 		select {
 		case msg := <- kv.applyCh:
@@ -187,7 +183,7 @@ func (kv *KVServer) applyMessage() {
 				}
 				kv.lastApplied = msg.CommandIndex
 				op := msg.Command.(Op)
-				DPrintf("[Server apply message] [%v] apply op [%v]", raftMe, op)
+				DPrintf("[Server apply message] apply op [%v]",  op)
 				var ret OpResult
 				if op.OpType == GetOp {
 					value, exist := kv.keyvValueService[op.Key]
