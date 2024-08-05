@@ -12,7 +12,7 @@ output_file="test_results.txt"
 # 运行测试
 for i in $(seq 1 1000); do
     # 使用超时运行测试
-    timeout -k 2s 900s time go test -run TestUnreliableChurn2C -race &
+    timeout -k 2s 900s time go test -run TestSnapshotInstall2D -race &
     pid=$!
     if ! wait $pid; then
         echo "*** FAILED TESTS IN TRIAL $i" >> "$output_file"

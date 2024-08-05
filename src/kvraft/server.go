@@ -8,6 +8,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+	"bytes"
 )
 
 const Debug = true
@@ -62,9 +63,32 @@ type KVServer struct {
 	opCh		map[int]chan OpResult
 }
 
+func (kv *KVServer) requireSnapshot() bool {
+	if kv.maxraftstate == -1 {
+		// if maxraftstate is -1, you do not have to snapshot. 
+		return false
+	}
+	size := kv.rf.GetRaftStateSize()
+	if size - 100 >= kv.maxraftstate {
+		return true
+	}
+	return false
+}
+
+func (kv *KVServer) snapshot(index int) {
+	_, isLeader := kv.rf.GetState()
+	if isLeader == false {
+		return
+	}
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	e.Encode(kv.keyvValueService)
+	e.Encode(kv.session)
+	snapshot := w.Bytes()
+	go kv.rf.Snapshot(index, snapshot)
+}
+
 func (kv *KVServer) getOpCh(index int) chan OpResult {
-	kv.mu.Lock()
-	defer kv.mu.Unlock()
 	ret, exist := kv.opCh[index]
 	if !exist {
 		kv.opCh[index] = make(chan OpResult, 1)
@@ -94,7 +118,9 @@ func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 		reply.Err = ErrWrongLeader
 		return
 	}
+	kv.mu.Lock()
 	opCh := kv.getOpCh(logIndex)
+	kv.mu.Unlock()
 	timer := time.NewTicker(150 * time.Millisecond)
 	select {
 	case appliedOp := <- opCh:
@@ -149,7 +175,9 @@ func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) 
 		reply.Err = ErrWrongLeader
 		return
 	}
+	kv.mu.Lock()
 	opCh := kv.getOpCh(logIndex)
+	kv.mu.Unlock()
 	timer := time.NewTicker(150 * time.Millisecond)
 	select {
 	case appliedOp := <- opCh:
@@ -171,9 +199,25 @@ func (kv *KVServer) applyMessage() {
 	for !kv.killed() {
 		select {
 		case msg := <- kv.applyCh:
-			
 			if msg.SnapshotValid {
-
+				// 这里直接抄lab2的test部分
+				kv.mu.Lock()
+				term, index, snapshot := msg.SnapshotTerm, msg.SnapshotIndex, msg.Snapshot
+				if snapshot == nil || len(snapshot) == 0 {
+					kv.mu.Unlock()
+					continue
+				}
+				if kv.rf.CondInstallSnapshot(term, index, snapshot) {
+					r := bytes.NewBuffer(snapshot)
+					d := labgob.NewDecoder(r)
+					kv.lastApplied = index
+					if d.Decode(&kv.keyvValueService) != nil || d.Decode(&kv.session) != nil {
+						panic("applyMessage apply snapshot error");
+					}
+					DPrintf("[Server applyMessage] apply snapshot term [%v], index [%v]", term, index)
+					
+				}
+				kv.mu.Unlock()
 			} else {
 				kv.mu.Lock()
 				logIndex := msg.CommandIndex
@@ -182,7 +226,7 @@ func (kv *KVServer) applyMessage() {
 					continue
 				}
 				kv.lastApplied = msg.CommandIndex
-				op := msg.Command.(Op)
+				op := msg.Command.(Op)			
 				DPrintf("[Server apply message] apply op [%v]",  op)
 				var ret OpResult
 				if op.OpType == GetOp {
@@ -216,12 +260,16 @@ func (kv *KVServer) applyMessage() {
 					}
 					ret = kv.session[op.ClientId]
 				}
-				kv.mu.Unlock()
+				
 				term, isLeader := kv.rf.GetState()
+				if kv.requireSnapshot() {
+					kv.snapshot(msg.CommandIndex)
+				}
 				if isLeader && msg.CommandTerm == term {
 					ch := kv.getOpCh(logIndex) 
 					ch <- ret	
 				}
+				kv.mu.Unlock()
 			}
 		}
 	}
