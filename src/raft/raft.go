@@ -111,6 +111,12 @@ func (rf *Raft) GetMe() int {
 	return rf.me
 }
 
+func (rf *Raft) GetRaftStateSize() int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.persister.RaftStateSize()
+}
+
 // return currentTerm and whether this server
 // believes it is the leader.
 func (rf *Raft) GetState() (int, bool) {
@@ -134,14 +140,6 @@ func (rf *Raft) GetState() (int, bool) {
 // see paper's Figure 2 for a description of what should be persistent.
 // 带锁进入
 func (rf *Raft) persist() {
-	// Your code here (2C).
-	// Example:
-	// w := new(bytes.Buffer)
-	// e := labgob.NewEncoder(w)
-	// e.Encode(rf.xxx)
-	// e.Encode(rf.yyy)
-	// data := w.Bytes()
-	// rf.persister.SaveRaftState(data)
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
 	// currentTerm votedFor log[]
@@ -187,29 +185,12 @@ func (rf *Raft) readPersist(data []byte) {
 		rf.lastIncludedIndex = lastIncludedIndex
 		rf.lastIncludedTerm = lastIncludedTerm
 		rf.snapshot = rf.persister.ReadSnapshot()
-		if rf.lastIncludedIndex > rf.commitIndex {
-			rf.commitIndex = rf.lastIncludedIndex
-		}
-		if rf.lastIncludedIndex > rf.lastApplied {
-			rf.lastApplied = rf.lastIncludedIndex
-		}
+		rf.commitIndex = rf.lastIncludedIndex
+		rf.lastApplied = rf.lastIncludedIndex
 		DPrintf("[readPersist] Server [%v] Decode success currentTerm [%v], votedFor [%v], log's length [%v]",
 				rf.me, rf.currentTerm, rf.votedFor, len(rf.log))
 		rf.mu.Unlock()
 	}
-	// Your code here (2C).
-	// Example:
-	// r := bytes.NewBuffer(data)
-	// d := labgob.NewDecoder(r)
-	// var xxx
-	// var yyy
-	// if d.Decode(&xxx) != nil ||
-	//    d.Decode(&yyy) != nil {
-	//   error...
-	// } else {
-	//   rf.xxx = xxx
-	//   rf.yyy = yyy
-	// }
 }
 
 //
@@ -246,11 +227,11 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 		rf.log = make([]LogEntry, 1)
 	} else {
 		// 截断日志
-		idx := 0
-		logLen := len(rf.log)
-		for idx < logLen && rf.log[idx].Index != lastIncludedIndex && rf.log[idx].Term != lastIncludedTerm {
-			idx++
-		}
+		idx := lastIncludedIndex - rf.getFirstLogEntry().Index
+		// logLen := len(rf.log)
+		// for idx < logLen && rf.log[idx].Index != lastIncludedIndex && rf.log[idx].Term != lastIncludedTerm {
+		// 	idx++
+		// }
 		// 这里应该不用特判了，因为idx那个位置要留作dummy log
 		retainedLog := rf.log[idx:]
 		newLog := make([]LogEntry, len(retainedLog))
@@ -291,11 +272,11 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 		DPrintf("[Snapshot] Server [%v] currentTerm [%v] firstLogIndex [%v] index [%v]", rf.me, rf.currentTerm, firstIndex, index)
 		return
 	}
-	idx := 0
-	logLen := len(rf.log)
-	for idx < logLen && rf.log[idx].Index != index {
-		idx++
-	}
+	idx := index - rf.getFirstLogEntry().Index
+	// logLen := len(rf.log)
+	// for idx < logLen && rf.log[idx].Index != index {
+	// 	idx++
+	// }
 	// 当前肯定是leader才会进行snapshot，并且snapshot包括的都是提交了的log
 	// Each server takes snapshots independently, covering just
 	// the committed entries in its log.
@@ -485,9 +466,9 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 			rf.getFirstLogEntry().Index, rf.getLastLogEntry().Term)
 	// DPrintf("[before] args.PrevLogIndex [%v] args.PrevLogTerm [%v]", args.PrevLogIndex, args.PrevLogTerm)
 	// reply false if term < currentTerm
+	reply.Term = rf.currentTerm
 	if args.Term < rf.currentTerm {
 		reply.Success = false
-		reply.Term = rf.currentTerm
 		DPrintf("[AppendEntries after1] Server [%v] in state [%v] currentTerm [%v] > args.Term[%v]\n", 
 					rf.me, stateArray[rf.state], rf.currentTerm, args.Term)
 		return
@@ -504,11 +485,13 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	if args.PrevLogIndex < rf.getFirstLogEntry().Index {
 		reply.Success = false
 		reply.Term = 0
+		// reply.ConflictIndex = rf.getFirstLogEntry().Index
+		// reply.ConflictTerm = rf.getFirstLogEntry().Term
 		DPrintf("[AppendEntries after2] Server [%v] in state [%v] args.PrevLogIndex [%v] < rf.getFirstLogEntry().Index [%v]\n", 
 					rf.me, stateArray[rf.state], args.PrevLogIndex, rf.getFirstLogEntry().Index)
 		return
 	}
-	if args.PrevLogIndex + 1 < rf.getFirstLogEntry().Index || args.PrevLogIndex > rf.getLastLogEntry().Index {
+	if /*args.PrevLogIndex + 1 < rf.getFirstLogEntry().Index || */args.PrevLogIndex > rf.getLastLogEntry().Index {
 		DPrintf("[AppendEntries after3] Server [%v] currentTerm [%v] args.PrevLogIndex is [%v], rf.getFirstLogEntry().Index is [%v], \nrf.getLastLogEntry().Index() is [%v] out of index...", 
 					rf.me, rf.currentTerm, args.PrevLogIndex, rf.getFirstLogEntry().Index, rf.getLastLogEntry().Index)
 		reply.Term = rf.currentTerm
@@ -519,9 +502,9 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		for i, entry := range args.Entries {
 			index := args.PrevLogIndex + 1 + i
 			if index > rf.getLastLogEntry().Index {
-				DPrintf("[AppendEntries inprogress] Server [%v] logs before append length [%v]\n", rf.me, len(rf.log))
+				DPrintf("[AppendEntries inprogress] Server [%v] log before append length [%v]\n", rf.me, len(rf.log))
 				rf.log = append(rf.log, args.Entries[i:]...)
-				DPrintf("[AppendEntries inprogress] Server [%v] logs after append length [%v]\n", rf.me, len(rf.log))
+				DPrintf("[AppendEntries inprogress] Server [%v] log after append length [%v]\n", rf.me, len(rf.log))
 				rf.persist()
 				break
 			} else if rf.getLogEntry(index).Term != entry.Term {
@@ -531,14 +514,14 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 				// 	idx++
 				// }
 				idx := index - rf.getFirstLogEntry().Index
-				DPrintf("[AppendEntries inprogress] Server [%v] logs before append length [%v]\n", rf.me, len(rf.log))
+				DPrintf("[AppendEntries inprogress] Server [%v] log before append length [%v]\n", rf.me, len(rf.log))
 				// DPrintf("[inprogress] Server [%v] entry.Index[%v] firstIndex [%v]", rf.me, entry.Index, firstIndex)
 				log := append(rf.log[:idx], args.Entries[i:]...)
-				// DPrintf("[inprogress] Server [%v] logs after append length [%v]\n", rf.me, len(log))
+				// DPrintf("[inprogress] Server [%v] log after append length [%v]\n", rf.me, len(log))
 				newLog := make([]LogEntry, len(log))
 				copy(newLog, log)
 				rf.log = newLog
-				DPrintf("[AppendEntries inprogress] Server [%v] logs after copy length [%v]\n", rf.me, len(rf.log))
+				DPrintf("[AppendEntries inprogress] Server [%v] log after copy length [%v]\n", rf.me, len(rf.log))
 				rf.persist()
 				break
 			}
@@ -572,9 +555,8 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		if index >= rf.getFirstLogEntry().Index {
 			reply.ConflictIndex = index
 			reply.ConflictTerm = rf.getLogEntry(index).Term
-			DPrintf("[AppendEntries after5] Delay logs ConflictIndex [%v] ConflictTerm [%v]", reply.ConflictIndex, reply.ConflictTerm)
+			DPrintf("[AppendEntries after5] Delay log ConflictIndex [%v] ConflictTerm [%v]", reply.ConflictIndex, reply.ConflictTerm)
 		} else {
-			// index < rf.getFirstLogEnrty()
 			// 这个日志落后太多了，要返回使用snapshot进行更新
 			reply.ConflictIndex = rf.lastIncludedIndex
 			reply.ConflictTerm = rf.lastIncludedTerm
@@ -583,15 +565,6 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		DPrintf("[AppendEntries after5] Server [%v] in state [%v] currentTerm [%v] votedFor [%v] get AppendEntries replyc.ConflictIndex [%v] reply.ConflictTerm [%v]\n", 
 				rf.me, stateArray[rf.state], rf.currentTerm, rf.votedFor, reply.ConflictIndex, reply.ConflictTerm)
 	}
-}
-
-func (rf *Raft) matchPrevLogIndex(prevLogIndex int, prevLogTerm int) bool {
-	for i := 0; i < len(rf.log); i++ {
-		if rf.log[i].Term == prevLogTerm && rf.log[i].Index == prevLogIndex {
-			return true
-		}
-	}
-	return false
 }
 
 // 带锁进入
@@ -606,12 +579,6 @@ func (rf *Raft) getLogEntry(index int) LogEntry {
 		return LogEntry{}
 	}
 	return rf.log[idx]
-	// for i := 0; i < len(rf.log); i++ {
-	// 	if rf.log[i].Index == index {
-	// 		return rf.log[i]
-	// 	}
-	// }
-	// return LogEntry{}
 }
 
 func (rf *Raft) AppendLogEntries(command interface{}) LogEntry {
@@ -854,7 +821,7 @@ func (rf *Raft) replicate(peer int, heartBeat bool) {
 		// 直接发
 		args := rf.genAppendEntriesArgs(prevLogIndex)
 		reply := AppendEntriesReply{}
-		DPrintf("Server [%v] send AppendEntrisRPC to Server [%v] with logs length [%v] begin {heartBeat[%v]}", rf.me, peer, len(args.Entries), heartBeat)
+		DPrintf("Server [%v] send AppendEntrisRPC to Server [%v] with log length [%v] begin {heartBeat[%v]}", rf.me, peer, len(args.Entries), heartBeat)
 		// 发出去了，要处理一下reply
 		rf.mu.Unlock()
 		// 发送RPC的时候不可以带着锁
@@ -906,6 +873,9 @@ func (rf *Raft) handleInstallSnapshotReply(peer int, args InstallSnapshotArgs, r
 func (rf *Raft) handleAppendEntrisReply(peer int, args AppendEntriesArgs, reply AppendEntriesReply) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
+	if reply.Term < rf.currentTerm {
+		return
+	}
 	// 发送成功了，需要改变一些性质
 	if reply.Success == true {
 		DPrintf("[handleAppendEntrisReply1] Server [%v] success in sending AppendEntriesRPC to Server [%v] with entries length [%v]\n", rf.me, peer, len(args.Entries))
@@ -922,18 +892,16 @@ func (rf *Raft) handleAppendEntrisReply(peer int, args AppendEntriesArgs, reply 
 		rf.stateTrans(Follower)
 		rf.votedFor = -1
 		rf.currentTerm = reply.Term
-		rf.electionTime = time.Now()
 		rf.persist()
 		DPrintf("[handleAppendEntrisReply2] Server [%v] failed to send AppendEntriesRPC to Server [%v] reply.Term [%v], rf.currentTerm [%v]",
 				rf.me, peer, reply.Term, rf.currentTerm)
 		return
 	}
-	// 没成功，要判断这是不是heartbeat
-	// if reply.ConflictIndex + 1 < rf.getFirstLogEntry().Index {
-	// 	DPrintf("[handleAppendEntrisReply3] Server [%v] failed to send AppendEntriesRPC to Server [%v] reply.ConflictIndex [%v], rf.getFirstLogEntry().Index [%v]",
-	// 			rf.me, peer, reply.ConflictIndex, rf.getFirstLogEntry().Index)
-	// 	return
-	// }
+	// 落后太多，需要快照补救
+	if reply.ConflictIndex <= rf.getFirstLogEntry().Index {
+		rf.nextIndex[peer] = reply.ConflictIndex + 1
+		return
+	}
 	if reply.ConflictIndex > rf.getLastLogEntry().Index {
 		rf.nextIndex[peer] = rf.getLastLogEntry().Index + 1
 		DPrintf("[handleAppendEntrisReply4] Server [%v] failed to send AppendEntriesRPC to Server [%v] reply.ConflictIndex [%v], rf.getLastLogEntry().Index [%v]",
@@ -1047,7 +1015,7 @@ func (rf *Raft) applyMessage() {
 func (rf *Raft) check(peer int) bool {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	// 如果这台机器是server，并且peer的匹配ID小于当前logs的最后一个ID，也就是没有replicate完logs
+	// 如果这台机器是server，并且peer的匹配ID小于当前log的最后一个ID，也就是没有replicate完log
 	return rf.state == Leader && rf.matchIndex[peer] < rf.getLastLogEntry().Index
 }
 
@@ -1083,18 +1051,8 @@ func (rf *Raft) broadcast(heartBeatRPC bool) {
 // 生成AppendEnrtisArgs, 必须带着锁进入
 // 注意，这个index是要发送的前一个，即prevLogEntry
 func (rf *Raft) genAppendEntriesArgs(index int) AppendEntriesArgs {
-	var prevLogEntry LogEntry
-	var entries []LogEntry
-	for i := 0; i < len(rf.log); i++ {
-		if rf.log[i].Index == index {
-			prevLogEntry = rf.log[i]
-		}
-		// 应该是？Index之后的log都发过去
-		if rf.log[i].Index > index /*&& rf.log[i].Term == rf.currentTerm */{
-			entries = append(entries, rf.log[i:]...)
-			break
-		}
-	}
+	prevLogEntry := rf.log[index - rf.getFirstLogEntry().Index]
+	entries := rf.log[index - rf.getFirstLogEntry().Index + 1:]
 	args := AppendEntriesArgs {
 		Term: rf.currentTerm,
 		LeaderId: rf.me,
