@@ -3,6 +3,7 @@ package kvraft
 import "6.824/labrpc"
 import "crypto/rand"
 import "math/big"
+import "time"
 
 
 type Clerk struct {
@@ -55,19 +56,20 @@ func (ck *Clerk) Get(key string) string {
 		ok := ck.servers[ck.leaderId].Call("KVServer.ServerGet", &args, &reply)
 		if ok {
 			if reply.Err == OK {
-				DPrintf("[Client Get] Client [%v] send Get to leader [%v] OK value [%v]", ck.clientId, ck.leaderId, reply.Value)
+				// DPrintf("[Client Get] Client [%v] send Get to leader [%v] OK value [%v]", ck.clientId, ck.leaderId, reply.Value)
 				return reply.Value
 			} else if reply.Err == ErrNoKey {
-				DPrintf("[Client Get] Client [%v] send Get to leader [%v] ErrNoKey", ck.clientId, ck.leaderId)
+				// DPrintf("[Client Get] Client [%v] send Get to leader [%v] ErrNoKey", ck.clientId, ck.leaderId)
 				return ""
 			} else {
-				DPrintf("[Client Get] Client [%v] send Get to leader [%v] Err [%v]", ck.clientId, ck.leaderId, reply.Err)
+				// DPrintf("[Client Get] Client [%v] send Get to leader [%v] Err [%v]", ck.clientId, ck.leaderId, reply.Err)
 				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
 			}
 		} else {
 			newLeaderId := (ck.leaderId + 1) % len(ck.servers)
-			DPrintf("[Client Get] Client [%v] failed to send Get to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
+			// DPrintf("[Client Get] Client [%v] failed to send Get to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
 			ck.leaderId = newLeaderId
+			time.Sleep(50 * time.Millisecond)
 		}
 	}
 	// You will have to modify this function.
@@ -95,22 +97,23 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 		SequenceNum:	ck.sequenceNum,
 	}
 	ck.sequenceNum++
-	DPrintf("[Client PutAppend] Client [%v] gen op id [%v] Key [%v] Value [%v] Op [%v]", 
-			ck.clientId, args.SequenceNum, args.Key, args.Value, args.Op)
+	// DPrintf("[Client PutAppend] Client [%v] gen op id [%v] Key [%v] Value [%v] Op [%v]", 
+			// ck.clientId, args.SequenceNum, args.Key, args.Value, args.Op)
 	for {
 		reply := PutAppendReply{}
 		ok := ck.servers[ck.leaderId].Call("KVServer.ServerPutAppend", &args, &reply)
 		if ok {
 			if reply.Err == OK {
-				DPrintf("[Client PutAppend] Client [%v] send PutAppend to leader [%v] OK", ck.clientId, ck.leaderId)
+				// DPrintf("[Client PutAppend] Client send PutAppend OK [%v]", args)
 				return
 			} else {
 				ck.leaderId = (ck.leaderId + 1) % len(ck.servers)
 			}
 		} else {
 			newLeaderId := (ck.leaderId + 1) % len(ck.servers)
-			DPrintf("[Client PutAppend] Client [%v] failed to send PutAppend to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
+			// DPrintf("[Client PutAppend] Client [%v] failed to send PutAppend to leader [%v] ok = false switch to new leader [%v]", ck.clientId, ck.leaderId, newLeaderId)
 			ck.leaderId = newLeaderId
+			time.Sleep(50 * time.Millisecond)
 		}
 	}
 }
@@ -118,6 +121,7 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 func (ck *Clerk) Put(key string, value string) {
 	ck.PutAppend(key, value, "PutOp")
 }
+
 func (ck *Clerk) Append(key string, value string) {
 	ck.PutAppend(key, value, "AppendOp")
 }

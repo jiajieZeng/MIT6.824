@@ -10,9 +10,9 @@ output_file="test_results.txt"
 > "$output_file"
 
 # 运行测试
-for i in $(seq 1 1000); do
+for i in $(seq 1 2); do
     # 使用超时运行测试
-    timeout -k 2s 900s time go test -run TestSnapshotInstall2D -race &
+    timeout -k 2s 900s time go test -run 2D -race &
     pid=$!
     if ! wait $pid; then
         echo "*** FAILED TESTS IN TRIAL $i" >> "$output_file"

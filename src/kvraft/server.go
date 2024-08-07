@@ -11,7 +11,7 @@ import (
 	"bytes"
 )
 
-const Debug = true
+const Debug = false
 
 func DPrintf(format string, a ...interface{}) (n int, err error) {
 	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
@@ -63,18 +63,22 @@ type KVServer struct {
 	opCh		map[int]chan OpResult
 }
 
+
+
+// 带锁进入
 func (kv *KVServer) requireSnapshot() bool {
 	if kv.maxraftstate == -1 {
 		// if maxraftstate is -1, you do not have to snapshot. 
 		return false
 	}
 	size := kv.rf.GetRaftStateSize()
-	if size - 100 >= kv.maxraftstate {
+	if size + 100 >= kv.maxraftstate {
 		return true
 	}
 	return false
 }
 
+// 带锁进入
 func (kv *KVServer) snapshot(index int) {
 	_, isLeader := kv.rf.GetState()
 	if isLeader == false {
@@ -82,12 +86,15 @@ func (kv *KVServer) snapshot(index int) {
 	}
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
+	kv.mu.Lock()
 	e.Encode(kv.keyvValueService)
 	e.Encode(kv.session)
 	snapshot := w.Bytes()
+	kv.mu.Unlock()
 	go kv.rf.Snapshot(index, snapshot)
 }
 
+// 带锁进入
 func (kv *KVServer) getOpCh(index int) chan OpResult {
 	ret, exist := kv.opCh[index]
 	if !exist {
@@ -101,7 +108,7 @@ func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 	// Your code here.
 	// 操作get
 	if kv.killed() {
-		DPrintf("[Server Get] server killed args [%v]", args)
+		// DPrintf("[Server Get] server killed args [%v]", args)
 		reply.Err = ErrWrongLeader
 		return
 	}
@@ -114,21 +121,21 @@ func (kv *KVServer) ServerGet(args *GetArgs, reply *GetReply) {
 	}
 	logIndex, _, isLeader := kv.rf.Start(op)
 	if isLeader == false {
-		DPrintf("[Server Get] server not leader [%v]", args)
+		// DPrintf("[Server Get] server not leader [%v]", args)
 		reply.Err = ErrWrongLeader
 		return
 	}
 	kv.mu.Lock()
 	opCh := kv.getOpCh(logIndex)
 	kv.mu.Unlock()
-	timer := time.NewTicker(150 * time.Millisecond)
+	timer := time.NewTicker(100 * time.Millisecond)
 	select {
 	case appliedOp := <- opCh:
 		reply.Value = appliedOp.Value
 		reply.Err = appliedOp.Err
-		DPrintf("[Server Get] server get reply [%v]", reply)
+		// DPrintf("[Server Get] server get reply [%v]", reply)
 	case <- timer.C:
-		DPrintf("[Server Get] server timeout")
+		// DPrintf("[Server Get] server timeout")
 		reply.Err = ErrTimeOut
 	}
 	timer.Stop()
@@ -178,7 +185,7 @@ func (kv *KVServer) ServerPutAppend(args *PutAppendArgs, reply *PutAppendReply) 
 	kv.mu.Lock()
 	opCh := kv.getOpCh(logIndex)
 	kv.mu.Unlock()
-	timer := time.NewTicker(150 * time.Millisecond)
+	timer := time.NewTicker(100 * time.Millisecond)
 	select {
 	case appliedOp := <- opCh:
 		reply.Err = appliedOp.Err
@@ -203,7 +210,7 @@ func (kv *KVServer) applyMessage() {
 				// 这里直接抄lab2的test部分
 				kv.mu.Lock()
 				term, index, snapshot := msg.SnapshotTerm, msg.SnapshotIndex, msg.Snapshot
-				if snapshot == nil || len(snapshot) == 0 {
+				if snapshot == nil || len(snapshot) == 0 || kv.lastApplied > index {
 					kv.mu.Unlock()
 					continue
 				}
@@ -211,23 +218,23 @@ func (kv *KVServer) applyMessage() {
 					r := bytes.NewBuffer(snapshot)
 					d := labgob.NewDecoder(r)
 					kv.lastApplied = index
+					// DPrintf("[Server applyMessage] [%v]", kv.keyvValueService)
 					if d.Decode(&kv.keyvValueService) != nil || d.Decode(&kv.session) != nil {
 						panic("applyMessage apply snapshot error");
 					}
-					DPrintf("[Server applyMessage] apply snapshot term [%v], index [%v]", term, index)
-					
+					// DPrintf("[Server applyMessage] apply snapshot term [%v], index [%v]", term, index)
+					// DPrintf("[Server applyMessage] [%v]", kv.keyvValueService)
 				}
 				kv.mu.Unlock()
 			} else {
 				kv.mu.Lock()
 				logIndex := msg.CommandIndex
-				if logIndex <= kv.lastApplied {
+				if msg.Command == nil || logIndex <= kv.lastApplied {
 					kv.mu.Unlock()
 					continue
 				}
 				kv.lastApplied = msg.CommandIndex
 				op := msg.Command.(Op)			
-				DPrintf("[Server apply message] apply op [%v]",  op)
 				var ret OpResult
 				if op.OpType == GetOp {
 					value, exist := kv.keyvValueService[op.Key]
@@ -244,6 +251,17 @@ func (kv *KVServer) applyMessage() {
 							Err:	ErrNoKey,
 						}
 					}
+					term, isLeader := kv.rf.GetState()
+					if kv.requireSnapshot() {
+						go kv.snapshot(msg.CommandIndex)
+					}
+					if isLeader && msg.CommandTerm == term {
+						ch := kv.getOpCh(logIndex) 
+						kv.mu.Unlock()
+						ch <- ret	
+					} else {
+						kv.mu.Unlock()
+					}
 				} else {
 					ok, _ := kv.isDuplicate(op.SequenceNum, op.ClientId)
 					if !ok {
@@ -252,24 +270,27 @@ func (kv *KVServer) applyMessage() {
 						} else if op.OpType == AppendOp {
 							kv.keyvValueService[op.Key] += op.Value
 						}
+						// DPrintf("[Server apply message] apply op [%v] now kv [%v]",  op, kv.keyvValueService[op.Key])
 						kv.session[op.ClientId] = OpResult {
 							SequenceNum:	op.SequenceNum, 
 							Value:			kv.keyvValueService[op.Key], 
 							Err: 			OK,
-						}	
+						}
+						term, isLeader := kv.rf.GetState()
+						if kv.requireSnapshot() {
+							go kv.snapshot(msg.CommandIndex)
+						}
+						if isLeader && msg.CommandTerm == term {
+							ch := kv.getOpCh(logIndex) 
+							kv.mu.Unlock()
+							ch <- kv.session[op.ClientId]	
+						} else {
+							kv.mu.Unlock()
+						}
+					} else {
+						kv.mu.Unlock()
 					}
-					ret = kv.session[op.ClientId]
 				}
-				
-				term, isLeader := kv.rf.GetState()
-				if kv.requireSnapshot() {
-					kv.snapshot(msg.CommandIndex)
-				}
-				if isLeader && msg.CommandTerm == term {
-					ch := kv.getOpCh(logIndex) 
-					ch <- ret	
-				}
-				kv.mu.Unlock()
 			}
 		}
 	}
@@ -294,6 +315,19 @@ func (kv *KVServer) Kill() {
 func (kv *KVServer) killed() bool {
 	z := atomic.LoadInt32(&kv.dead)
 	return z == 1
+}
+
+func (kv *KVServer) readPersistSnapshot() {
+	data, index := kv.rf.GetPersistSnapshot()
+	if data == nil || len(data) < 1 {
+		return
+	}
+	r := bytes.NewBuffer(data)
+	d := labgob.NewDecoder(r)
+	kv.lastApplied = index
+	if d.Decode(&kv.keyvValueService) != nil || d.Decode(&kv.session) != nil {
+		panic("Error: readPersistSnapshot")
+	}
 }
 
 //
@@ -329,6 +363,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.keyvValueService = make(map[string]string)
 	kv.session = make(map[int64]OpResult)
 	kv.opCh = make(map[int]chan OpResult)
+	kv.readPersistSnapshot()
 	go kv.applyMessage()
 	return kv
 }
