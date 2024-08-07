@@ -315,6 +315,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 		if crash {
 			// log.Printf("shutdown servers\n")
 			for i := 0; i < nservers; i++ {
+				DPrintf("[TEST] shutdown server [%v]", i)
 				cfg.ShutdownServer(i)
 			}
 			// Wait for a while for servers to shutdown, since
@@ -323,6 +324,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			// log.Printf("restart servers\n")
 			// crash and re-start all
 			for i := 0; i < nservers; i++ {
+				DPrintf("[TEST] start server [%v]", i)
 				cfg.StartServer(i)
 			}
 			cfg.ConnectAll()
@@ -347,6 +349,8 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			// Check maximum after the servers have processed all client
 			// requests and had time to checkpoint.
 			sz := cfg.LogSize()
+			DPrintf("[TEST] sz [%v]", sz)
+			fmt.Printf("[Check] logs size [%v]\n", sz)
 			if sz > 8*maxraftstate {
 				t.Fatalf("logs were not trimmed (%v > 8*%v)", sz, maxraftstate)
 			}
@@ -359,6 +363,12 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			}
 		}
 	}
+
+	// for i := 0; i < 10; i++ {
+	// 	sz := cfg.LogSize()
+	// 	fmt.Printf("[Check] logs size [%v]\n", sz)
+	// 	time.Sleep(time.Second)
+	// }
 
 	res, info := porcupine.CheckOperationsVerbose(models.KvModel, opLog.Read(), linearizabilityCheckTimeout)
 	if res == porcupine.Illegal {
@@ -377,7 +387,8 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 	} else if res == porcupine.Unknown {
 		fmt.Println("info: linearizability check timed out, assuming history is ok")
 	}
-
+	sz := cfg.LogSize()
+	DPrintf("[TEST] sz [%v]", sz)
 	cfg.end()
 }
 
@@ -619,6 +630,7 @@ func TestSnapshotRPC3B(t *testing.T) {
 	// check that the majority partition has thrown away
 	// most of its log entries.
 	sz := cfg.LogSize()
+	fmt.Printf("logs size [%v]\n", sz)
 	if sz > 8*maxraftstate {
 		t.Fatalf("logs were not trimmed (%v > 8*%v)", sz, maxraftstate)
 	}
@@ -669,6 +681,7 @@ func TestSnapshotSize3B(t *testing.T) {
 
 	// check that servers have thrown away most of their log entries
 	sz := cfg.LogSize()
+	fmt.Printf("logs size [%v]\n", sz)
 	if sz > 8*maxraftstate {
 		t.Fatalf("logs were not trimmed (%v > 8*%v)", sz, maxraftstate)
 	}
