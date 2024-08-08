@@ -52,7 +52,7 @@ type KVServer struct {
 
 	// Your definitions here.
 	lastApplied 	int
-	keyvValueService	map[string]string	// replicated state machine
+	keyValueService	map[string]string	// replicated state machine
 	/*
 		Each server’s state machine maintains a session for each client.
 		The session tracks the latest serial number processed for the client, along with the associated re
@@ -87,7 +87,7 @@ func (kv *KVServer) snapshot(index int) {
 	w := new(bytes.Buffer)
 	e := labgob.NewEncoder(w)
 	kv.mu.Lock()
-	e.Encode(kv.keyvValueService)
+	e.Encode(kv.keyValueService)
 	e.Encode(kv.session)
 	snapshot := w.Bytes()
 	kv.mu.Unlock()
@@ -218,12 +218,12 @@ func (kv *KVServer) applyMessage() {
 					r := bytes.NewBuffer(snapshot)
 					d := labgob.NewDecoder(r)
 					kv.lastApplied = index
-					// DPrintf("[Server applyMessage] [%v]", kv.keyvValueService)
-					if d.Decode(&kv.keyvValueService) != nil || d.Decode(&kv.session) != nil {
+					// DPrintf("[Server applyMessage] [%v]", kv.keyValueService)
+					if d.Decode(&kv.keyValueService) != nil || d.Decode(&kv.session) != nil {
 						panic("applyMessage apply snapshot error");
 					}
 					// DPrintf("[Server applyMessage] apply snapshot term [%v], index [%v]", term, index)
-					// DPrintf("[Server applyMessage] [%v]", kv.keyvValueService)
+					// DPrintf("[Server applyMessage] [%v]", kv.keyValueService)
 				}
 				kv.mu.Unlock()
 			} else {
@@ -237,7 +237,7 @@ func (kv *KVServer) applyMessage() {
 				op := msg.Command.(Op)			
 				var ret OpResult
 				if op.OpType == GetOp {
-					value, exist := kv.keyvValueService[op.Key]
+					value, exist := kv.keyValueService[op.Key]
 					if exist {
 						ret = OpResult {
 							SequenceNum: op.SequenceNum,
@@ -266,14 +266,14 @@ func (kv *KVServer) applyMessage() {
 					ok, _ := kv.isDuplicate(op.SequenceNum, op.ClientId)
 					if !ok {
 						if op.OpType == PutOp {
-							kv.keyvValueService[op.Key] = op.Value
+							kv.keyValueService[op.Key] = op.Value
 						} else if op.OpType == AppendOp {
-							kv.keyvValueService[op.Key] += op.Value
+							kv.keyValueService[op.Key] += op.Value
 						}
-						// DPrintf("[Server apply message] apply op [%v] now kv [%v]",  op, kv.keyvValueService[op.Key])
+						// DPrintf("[Server apply message] apply op [%v] now kv [%v]",  op, kv.keyValueService[op.Key])
 						kv.session[op.ClientId] = OpResult {
 							SequenceNum:	op.SequenceNum, 
-							Value:			kv.keyvValueService[op.Key], 
+							Value:			kv.keyValueService[op.Key], 
 							Err: 			OK,
 						}
 						term, isLeader := kv.rf.GetState()
@@ -325,7 +325,7 @@ func (kv *KVServer) readPersistSnapshot() {
 	r := bytes.NewBuffer(data)
 	d := labgob.NewDecoder(r)
 	kv.lastApplied = index
-	if d.Decode(&kv.keyvValueService) != nil || d.Decode(&kv.session) != nil {
+	if d.Decode(&kv.keyValueService) != nil || d.Decode(&kv.session) != nil {
 		panic("Error: readPersistSnapshot")
 	}
 }
@@ -360,7 +360,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 
 	// You may need initialization code here.
 	kv.lastApplied = 0
-	kv.keyvValueService = make(map[string]string)
+	kv.keyValueService = make(map[string]string)
 	kv.session = make(map[int64]OpResult)
 	kv.opCh = make(map[int]chan OpResult)
 	kv.readPersistSnapshot()
