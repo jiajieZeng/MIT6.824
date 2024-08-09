@@ -12,7 +12,7 @@ import (
 func check(t *testing.T, groups []int, ck *Clerk) {
 	c := ck.Query(-1)
 	if len(c.Groups) != len(groups) {
-		t.Fatalf("wanted %v groups, got %v", len(groups), len(c.Groups))
+		t.Fatalf("wanted %v groups, got %v c [%v]", len(groups), len(c.Groups), c)
 	}
 
 	// are the groups as expected?
@@ -94,11 +94,13 @@ func TestBasic(t *testing.T) {
 
 	var gid1 int = 1
 	ck.Join(map[int][]string{gid1: []string{"x", "y", "z"}})
+	DPrintf("[TEST] check gid1")
 	check(t, []int{gid1}, ck)
 	cfa[1] = ck.Query(-1)
 
 	var gid2 int = 2
 	ck.Join(map[int][]string{gid2: []string{"a", "b", "c"}})
+	DPrintf("[TEST] check gid2")
 	check(t, []int{gid1, gid2}, ck)
 	cfa[2] = ck.Query(-1)
 

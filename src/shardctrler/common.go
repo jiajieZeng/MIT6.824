@@ -24,8 +24,8 @@ const NShards = 10
 // Please don't change this.
 type Config struct {
 	Num    int              // config number
-	Shards [NShards]int     // shard -> gid
-	Groups map[int][]string // gid -> servers[]
+	Shards [NShards]int     // shard -> gid  // shard对应的是gid, 那么shards[i] = j表示i号分片在j号组下面
+	Groups map[int][]string // gid -> servers[] 这个map仅仅是用来通过gid在这个配置中找到server的而已，是一个可查的表，跟负载均衡没关系
 }
 
 const (
