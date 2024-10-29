@@ -40,6 +40,8 @@ type Clerk struct {
 	config   shardctrler.Config
 	make_end func(string) *labrpc.ClientEnd
 	// You will have to modify this struct.
+	clientId 	int64
+	sequenceNum int
 }
 
 //
@@ -56,6 +58,10 @@ func MakeClerk(ctrlers []*labrpc.ClientEnd, make_end func(string) *labrpc.Client
 	ck.sm = shardctrler.MakeClerk(ctrlers)
 	ck.make_end = make_end
 	// You'll have to add code here.
+	ck.clientId = nrand()
+	ck.sequenceNum = 0
+	// 要拿到当前集群的配置, -1返回最新配置
+	ck.config = ck.sm.Query(-1)
 	return ck
 }
 
@@ -68,7 +74,10 @@ func MakeClerk(ctrlers []*labrpc.ClientEnd, make_end func(string) *labrpc.Client
 func (ck *Clerk) Get(key string) string {
 	args := GetArgs{}
 	args.Key = key
-
+	args.ClientId = ck.clientId
+	args.SequenceNum = ck.sequenceNum
+	args.Op = GetOp
+	ck.sequenceNum += 1
 	for {
 		shard := key2shard(key)
 		gid := ck.config.Shards[shard]
@@ -104,7 +113,9 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 	args.Key = key
 	args.Value = value
 	args.Op = op
-
+	args.ClientId = ck.clientId
+	args.SequenceNum = ck.sequenceNum
+	ck.sequenceNum += 1
 
 	for {
 		shard := key2shard(key)
@@ -130,8 +141,8 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 }
 
 func (ck *Clerk) Put(key string, value string) {
-	ck.PutAppend(key, value, "Put")
+	ck.PutAppend(key, value, "PutOp")
 }
 func (ck *Clerk) Append(key string, value string) {
-	ck.PutAppend(key, value, "Append")
+	ck.PutAppend(key, value, "AppendOp")
 }
